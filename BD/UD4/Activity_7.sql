@@ -62,10 +62,10 @@ ORDER BY
 SELECT
     name,
     email,
-    registration_date,
-    DATEDIFF(CURDATE(), registration_date) AS days_active,
+    register_date,
+    DATEDIFF(CURDATE(), register_date) AS days_active,
     IF(
-        DATEDIFF(CURDATE(), registration_date) > 365,
+        DATEDIFF(CURDATE(), register_date) > 365,
         'OLD',
         'RECENT'
     ) AS user_label,
