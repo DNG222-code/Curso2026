@@ -1,3 +1,5 @@
+USE tienda_menorca;
+
 -- BLOQUE E - SELECT
 
 -- 22.
@@ -41,14 +43,42 @@ AND fecha_pedido >= '2024-01-01';
 -- 31.
 SELECT id_pedido, fecha_pedido,
        IF (
-               fecha_pedido IS NOT NULL,
-               'Tiene fecha',
-               'No tiene fecha',
+           fecha_pedido IS NOT NULL,
+           'Tiene fecha',
+           'No tiene fecha',
 
-               IF (
-                       fecha_pedido IS NULL,
-                       'INASIGNADO',
-                       'ASIGNADO'
-               ) AS 'estado'
+           IF (
+               fecha_pedido IS NULL,
+               'INASIGNADO',
+               'ASIGNADO'
+           ) AS 'estado'
        )
 FROM pedido;
+
+-- 32.
+SELECT
+    id_cliente,
+    nombre,
+    email,
+    telefono,
+    IF (
+        email IS NOT NULL AND email <> ''
+            AND telefono IS NOT NULL AND telefono <> '',
+        'COMPLETO',
+        IF (
+            email IS NOT NULL AND email <> ''
+                OR telefono IS NOT NULL AND telefono <> '',
+            'PARCIAL',
+            'INCOMPLETO'
+        )
+    ) AS perfil_contacto
+FROM cliente
+ORDER BY perfil_contacto, nombre
+LIMIT 10;
+
+-- 33.
+SELECT id_pedido, fecha_pedido, CURRENT_DATE, DATEDIFF(CURRENT_DATE, fecha_pedido) AS 'Dias trascuridos'
+FROM pedido
+WHERE fecha_pedido IS NOT NULL
+ORDER BY fecha_pedido
+LIMIT 1;
