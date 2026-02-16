@@ -82,24 +82,9 @@ VALUES (1, '2024-01-01 19:00:00', 1, 1, 1, 1), (2, '2025-04-01 22:00:00', 2, 2, 
 INSERT INTO Director (id_director, director_name)
 VALUES (1, 'Santiago Segura'), (2, 'William Shakespeare');
 
--- INNER JOIN's
-SELECT p.projection_ID, m.title, c.cine_name 
-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
-INNER JOIN Cine c ON p.id_cine = c.id_cine;
+-- DELETE's
+DROP TABLE Projection;
 
-SELECT m.title, m.genre, c.cine_name, r.room_number, p.projection_Datetime
-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
-INNER JOIN Cine c ON p.id_cine = c.id_cine
-INNER JOIN Room r ON p.id_room = r.id_room;
+DROP TABLE Movie;
 
-SELECT m.title, d.director_name, c.cine_name
-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
-INNER JOIN Director d ON p.id_director = d.id_director
-INNER JOIN Cine c ON p.id_cine = c.id_cine
-ORDER BY projection_Datetime;
-
-SELECT m.title, p.projection_Datetime, r.room_number
-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
-INNER JOIN Room r ON p.id_room = r.id_room
-INNER JOIN Cine c ON p.id_cine = c.id_cine
-WHERE cine_name = 'Cine Centro';
+DROP TABLE Room;
