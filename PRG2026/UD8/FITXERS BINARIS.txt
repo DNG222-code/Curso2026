@@ -1,0 +1,36 @@
+FITXERS BINARIS
+
+Escritura
+
+FileOutputStream
+DataOutputStream
+ObjectOutputStream
+
+// Métodes
+void writeBoolean(boolean b)
+void writeChar(int c)
+void writeInt(int i)
+
+void writeObject(Object o)
+
+Serializar
+Deserializar
+
+Interface: Serializable
+
+class Client implements Serializable {
+
+}
+
+LECTURA
+
+FileInputStream
+ObjectInputStream
+
+// Métodes
+readBolean
+readChar
+readInt
+readLong
+readDouble
+readObject
