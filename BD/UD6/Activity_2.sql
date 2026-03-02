@@ -69,4 +69,7 @@ ORDER BY 'Total_Projections' DESC
 LIMIT 3;
 
 	-- 9
-SELECT m.title, MAX(p.projection_Datetime) AS 'Last_Screenings', MAX(p.projection_Datetime) AS 'First_Screenings'
+SELECT m.title, MAX(p.projection_Datetime) AS 'Last_Screenings', MIN(p.projection_Datetime) AS 'First_Screenings'
+FROM Movie m INNER JOIN Projection p ON m.id_movie = p.id_movie
+GROUP BY 'Last_screenings', 'First_Screenings'
+LIMIT 2;
