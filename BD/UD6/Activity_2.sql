@@ -73,3 +73,34 @@ SELECT m.title, MAX(p.projection_Datetime) AS 'Last_Screenings', MIN(p.projectio
 FROM Movie m INNER JOIN Projection p ON m.id_movie = p.id_movie
 GROUP BY 'Last_screenings', 'First_Screenings'
 LIMIT 2;
+
+-- 10
+SELECT p.projection_ID, COUNT(p.projection_ID) AS 'number_Sreenings', c.cine_name
+FROM Projection p INNER JOIN Cine c ON p.id_cine = c.id_cine
+WHERE c.cine_name = 'Cine Centro'
+GROUP BY 'number_Screenings'
+LIMIT 1;
+
+-- 11
+SELECT 
+    c.cine_name, 
+    c.cine_address, 
+    m.genre, 
+    COUNT(p.projection_ID) AS total_projections, 
+    MAX(p.projection_Datetime) AS Last_Screenings, 
+    MIN(p.projection_Datetime) AS First_Screenings
+FROM Projection p 
+INNER JOIN Cine c ON p.id_cine = c.id_cine
+INNER JOIN Movie m ON p.id_movie = m.id_movie
+WHERE 
+    (c.cine_address LIKE '%Cine%' OR c.cine_address LIKE '%Centro%')
+    AND (m.genre LIKE '%Acc%' OR m.genre LIKE '%Dra%')
+    AND m.genre NOT LIKE '%Saga%'
+GROUP BY 
+    c.cine_name, 
+    c.cine_address, 
+    m.genre
+ORDER BY 
+    total_projections DESC, 
+    Last_Screenings DESC, 
+    First_Screenings DESC;
