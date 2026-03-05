@@ -78,5 +78,64 @@ CREATE TABLE Reservation_car (
 );
 
 -- INSERT's
+INSERT INTO Customer (customer_code, dni, nombre, direction, phone_number, id_avalista)
+VALUES
+('C001', '12345678A', 'Alice Brown', 'Main Street 10', '600111111', NULL),
+('C002', '23456789B', 'Bob Smith', 'Main Street 10', '600222222', 1),
+('C003', '34567890C', 'Charlie Green', 'Oak Avenue 5', '611333333', NULL),
+('C004', '45678901D', 'Diana White', 'Pine Road 8', '622444444', 1);
 
+
+INSERT INTO Agency (name_agency, direction_agency)
+VALUES
+('Central Agency', 'Downtown'),
+('Airport Agency', 'Airport Area');
+
+INSERT INTO Garage (name_garage, direction_garage)
+VALUES
+('Central Garage', 'Garage Street 1'),
+('Airport Garage', 'Airport Road 20');
+
+INSERT INTO Car (license_plate, brand, model, color, id_garage)
+VALUES
+('1234ABC', 'Toyota', 'Corolla', 'White', 1),
+('2345BCD', 'Ford', 'Focus', 'Blue', 1),
+('3456CDE', 'Volkswagen', 'Golf', 'Black', 2),
+('4567DEF', 'Seat', 'Ibiza', 'Red', 2),
+('5678EFG', 'Peugeot', '208', 'Grey', 1);
+
+INSERT INTO Reservation (start_reservation, end_reservation, total_price, car_delivered, id_customer, id_agency)
+VALUES
+('2026-01-10', '2026-01-15', 500.00, 1, 1, 1),
+('2026-02-01', '2026-02-05', 300.00, 0, 2, 1),
+('2026-03-10', '2026-03-12', 620.00, 1, 3, 2);
+
+INSERT INTO Reservation_car (id_reservation, id_coche, rental_price, liters_gasoline)
+VALUES
+-- Reservation 1 (2 cars)
+(1, 1, 250.00, 40.00),
+(1, 2, 250.00, 35.00),
+
+-- Reservation 2 (1 car)
+(2, 3, 300.00, 50.00),
+
+-- Reservation 3 (2 cars)
+(3, 4, 320.00, 45.00),
+(3, 5, 300.00, 42.00);
+
+-- Queries
+
+-- 1
+SELECT r.id_reservation, r.start_reservation, r.end_reservation, r.total_price, r.car_delivered, c.nombre, a.name_agency
+FROM Reservation r INNER JOIN Customer c ON r.id_customer = c.id_customer
+INNER JOIN Agency a ON r.id_agency = a.id_agency
+ORDER BY r.start_reservation DESC;
+
+-- 2
+SELECT r.id_reservation, r.start_reservation, r.total_price, c.nombre
+FROM Reservation r 
+INNER JOIN Customer c ON r.id_customer = c.id_customer
+WHERE c.nombre LIKE '%Al%'
+
+-- 3
 
