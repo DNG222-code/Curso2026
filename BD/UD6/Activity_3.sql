@@ -135,7 +135,11 @@ ORDER BY r.start_reservation DESC;
 SELECT r.id_reservation, r.start_reservation, r.total_price, c.nombre
 FROM Reservation r 
 INNER JOIN Customer c ON r.id_customer = c.id_customer
-WHERE c.nombre LIKE '%Al%'
+WHERE c.nombre LIKE '%Al%';
 
--- 3
-
+-- 8
+SELECT a.name_agency, COUNT(r.total_price) AS 'total_revenue', COUNT(r.id_reservation) AS 'total_amount'
+FROM Agency a
+INNER JOIN Reservation r ON a.id_agency = r.id_agency
+WHERE r.car_delivered IS NOT NULL
+ORDER BY total_revenue, total_amount;
