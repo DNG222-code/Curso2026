@@ -143,3 +143,12 @@ FROM Agency a
 INNER JOIN Reservation r ON a.id_agency = r.id_agency
 WHERE r.car_delivered IS NOT NULL
 ORDER BY total_revenue, total_amount;
+
+-- 9
+SELECT r.id_reservation,
+       cu.nombre,
+       r.total_price,
+       IF(r.car_delivered > 0, 'Delivered', 'Pending') AS delivery_status
+FROM Reservation r
+INNER JOIN Customer cu ON r.id_customer = cu.id_customer
+INNER JOIN Reservation_car rc ON r.id_reservation = rc.id_reservation;
