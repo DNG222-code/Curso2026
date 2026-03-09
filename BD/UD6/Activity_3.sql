@@ -152,3 +152,10 @@ SELECT r.id_reservation,
 FROM Reservation r
 INNER JOIN Customer cu ON r.id_customer = cu.id_customer
 INNER JOIN Reservation_car rc ON r.id_reservation = rc.id_reservation;
+
+-- 10
+SELECT cu.nombre, cu.id_customer
+FROM Customer cu
+WHERE cu.id_customer LIKE '%a' OR cu.phone_number LIKE '%600%'
+ORDER BY cu.nombre
+LIMIT 10;
