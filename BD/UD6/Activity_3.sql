@@ -159,3 +159,10 @@ FROM Customer cu
 WHERE cu.id_customer LIKE '%a' OR cu.phone_number LIKE '%600%'
 ORDER BY cu.nombre
 LIMIT 10;
+
+-- 11
+SELECT cu.nombre, id_customer
+FROM Customer cu
+WHERE cu.direction = 'Main Street 10'
+ORDER BY cu.nombre
+LIMIT 10;
