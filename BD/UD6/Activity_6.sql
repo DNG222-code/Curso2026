@@ -27,7 +27,7 @@ ORDER BY a.id_agency, r.start_reservation;
 
 -- 5
 SELECT a.name_agency, r.id_reservation
-FROM agency a
-LEFT JOIN reservation r ON a.id_agency = r.id_agency
+FROM Agency a
+LEFT JOIN Reservation r ON a.id_agency = r.id_agency
 AND r.start_reservation >= '2024-01-01'
 AND r.start_reservation < '2025-01-01';
