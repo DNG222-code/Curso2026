@@ -46,8 +46,35 @@ SELECT c.nombre, a.name_agency, r.total_price,
            WHEN total_price > 200 THEN 'Expensive'
            WHEN total_price < 50 THEN 'Cheap'
            ELSE 'Normal'
-        END
+        END AS 'reservation_type'
 FROM Customer c
 INNER JOIN Reservation r ON c.id_customer = r.id_customer
 INNER JOIN Agency a ON r.id_agency = a.id_agency
-WHERE start_reservation
+WHERE start_reservation BETWEEN 2024-01-01 AND 2024-12-31;
+
+-- 6
+SELECT
+    c.id_coche,
+    COUNT(c.id_coche) AS 'times_rented',
+    AVG(rc.liters_gasoline) AS 'consumption',
+    CASE
+        WHEN 'consuption' > 12 THEN 'High'
+        WHEN 'consuption' < 3 THEN 'Low'
+        ELSE 'Medium'
+    END AS 'consumption_level'
+FROM Car c
+INNER JOIN Reservation_car rc ON c.id_coche = rc.id_coche
+GROUP BY c.id_coche
+HAVING 'times_rented' >= 2;
+
+-- 7
+SELECT a.name_agency, MAX(r.total_price) AS 'highest_price',
+       CASE
+           WHEN r.total_price > 1000 THEN 'Premium'
+           WHEN r.total_price < 100 THEN 'Economy'
+           ELSE 'Standard'
+       END AS 'agency_type'
+FROM Agency a
+INNER JOIN Reservation r ON a.id_agency = r.id_agency
+GROUP BY a.name_agency
+HAVING highest_price > 300;
