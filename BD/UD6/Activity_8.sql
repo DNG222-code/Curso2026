@@ -8,7 +8,16 @@ WHERE total_price < (
 );
 
 -- 3
-SELECT * FROM Reservation
-WHERE total_price < (
+SELECT *
+FROM Agency a
+WHERE a.id_agency IN (
+    SELECT r.id_agency
+    FROM Reservation r
+    WHERE r.total_price > (
+        SELECT MIN(total_price)
+        FROM Reservation
+    )
+);
 
-)
+-- 4
+
