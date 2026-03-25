@@ -33,3 +33,37 @@ WHERE id_customer IN (
 );
 
 -- 5
+SELECT *
+FROM Car c
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Reservation_car rc
+    WHERE rc.id_coche = c.id_coche
+);
+
+-- 6
+SELECT *
+FROM Reservation
+WHERE total_price > ANY (
+    SELECT total_price
+    FROM Reservation
+    WHERE id_customer = 2
+);
+
+-- 7
+SELECT *
+FROM Reservation
+WHERE total_price > ALL (
+    SELECT total_price
+    FROM Reservation
+    WHERE id_customer = 2
+);
+
+-- 8
+SELECT *
+FROM Garage g
+WHERE NOT EXISTS (
+    SELECT id_garage
+    FROM Car c
+    WHERE c.id_garage = g.id_garage
+);
