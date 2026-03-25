@@ -20,4 +20,16 @@ WHERE a.id_agency IN (
 );
 
 -- 4
+SELECT *
+FROM Customer
+WHERE id_customer IN (
+    SELECT r.id_customer
+    FROM Reservation r
+    WHERE r.id_agency IN (
+        SELECT a.id_agency
+        FROM Agency a
+        WHERE a.name_agency LIKE '%Central%'
+    )
+);
 
+-- 5
