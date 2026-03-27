@@ -52,5 +52,26 @@ WHERE r.id_reservation IS NULL;
 SELECT * FROM Customer c
 WHERE EXISTS(
     SELECT c.id_customer
-    FROM
-)
+    FROM Reservation r
+    WHERE c.id_customer = r.id_customer
+      AND r.total_price > 500
+);
+
+-- JOIN
+SELECT * FROM Customer c
+JOIN Reservation r ON c.id_customer = r.id_customer
+WHERE r.total_price > 500;
+
+-- 5
+
+-- SUBQUERY
+SELECT * FROM Garage g
+WHERE EXISTS(
+    SELECT g.id_garage
+    FROM Car c
+    WHERE c.id_garage = g.id_garage
+);
+
+-- JOIN
+SELECT * FROM Garage g
+JOIN Car c ON g.id_garage = c.id_garage;
