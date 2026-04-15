@@ -80,3 +80,28 @@ BEGIN
 END //
 
 // DELIMITER ;
+
+-- Exercise 4 – Check if a director's salary is above the average of their country
+DELIMITER //
+
+CREATE PROCEDURE check_director_above_country_average (
+    IN p_director_id INT,
+    OUT p_result VARCHAR(50)
+)
+BEGIN
+    DECLARE v_salary DECIMAL;
+    DECLARE v_country VARCHAR(50);
+    DECLARE v_avg_salary DECIMAL;
+
+    SET v_salary = (SELECT director_salary FROM director
+                   WHERE p_director_id = director_id);
+    SET v_country = (SELECT c.country_name FROM country c
+                   INNER JOIN director d ON c.country_id = d.country_id
+                     WHERE p_director_id = director_id);
+    SET v_avg_salary = (SELECT AVG(director_salary) AS 'average_salary' FROM director
+                        WHERE p_director_id = director_id);
+
+
+END //
+
+// DELIMITER ;

@@ -76,7 +76,7 @@ INSERT INTO partida (id_jugador, id_juego, fecha_partida, puntuacion) VALUES
 (2, 4, '2024-05-17', 930);
 
 -- =========================================
--- CONSULTAS DE COMPROBACION
+-- CONSULTAS DE COMPROBACIÓN
 -- =========================================
 SELECT * FROM jugador;
 SELECT * FROM videojuego;
@@ -98,7 +98,6 @@ WHERE p.puntuacion > (
     SELECT AVG(puntuacion)
     FROM partida
 );
-
 
 -- Ejercicio 2 — Jugadores que han jugado a videojuegos RPG
 SELECT nombre
@@ -128,7 +127,6 @@ WHERE NOT EXISTS (
     FROM partida p
     WHERE p.id_juego = v.id_juego
 );
-
 
 -- Ejercicio 4 — Jugadores con puntuaciones muy altas
 SELECT nombre, pais
@@ -163,7 +161,6 @@ HAVING AVG(p.puntuacion) > (
     SELECT AVG(puntuacion)
     FROM partida
 );
-
 
 -- Ejercicio 6 — Partidas con puntuación superior a la media del videojuego
 -- “Quiero las partidas cuya puntuación sea mayor que la media de su propio videojuego”
@@ -211,7 +208,6 @@ SELECT *
 FROM vista_partidas_completas
 ORDER BY puntuacion DESC;
 
-
 -- Ejercicio 8 — Crear una vista de estadísticas por videojuego
 -- Crear la vista
 CREATE VIEW vista_estadisticas_videojuego AS
@@ -232,7 +228,6 @@ WHERE puntuacion_media > 700;
 SELECT *
 FROM vista_estadisticas_videojuego
 WHERE total_partidas > 3;
-
 
 -- Ejercicio 9 — Crear una vista de estadísticas por jugador
 -- Crear la vista
