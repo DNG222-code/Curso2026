@@ -101,7 +101,41 @@ BEGIN
     SET v_avg_salary = (SELECT AVG(director_salary) AS 'average_salary' FROM director
                         WHERE p_director_id = director_id);
 
-
+    IF v_salary > v_avg_salary THEN
+        SET p_result = 'Above country average';
+    ELSE
+        SET p_result = 'Below country average';
+    END IF;
 END //
 
 // DELIMITER ;
+
+CALL check_director_above_country_average(2, @result);
+SELECT @result;
+
+-- Exercise 5 – Classify the age of a movie
+DELIMITER //
+
+CREATE PROCEDURE classify_movie_age (
+    IN p_movie_id INT,
+    OUT p_category VARCHAR(20)
+)
+BEGIN
+    DECLARE v_release_year YEAR;
+
+    SET v_release_year = (SELECT release_year FROM movie);
+
+    IF v_release_year < 2000 THEN
+        SET p_category = 'Old movie';
+        ELSE IF v_release_year BETWEEN 2000 AND 2015 THEN
+            SET p_category = 'Middle-aged movie';
+        ELSE
+            SET p_category = 'Recent movie';
+        END IF;
+    END IF;
+END //
+
+// DELIMITER ;
+
+CALL classify_movie_age(1, @category);
+SELECT @category;
