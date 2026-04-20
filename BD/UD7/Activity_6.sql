@@ -139,3 +139,5 @@ END //
 
 CALL classify_movie_age(1, @category);
 SELECT @category;
+
+-- Exercise 6
