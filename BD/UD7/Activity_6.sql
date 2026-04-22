@@ -81,6 +81,22 @@ END //
 
 // DELIMITER ;
 
+CALL classify_movie_duration(2, @classification);
+SELECT @classification;
+
+-- Exercise 4 – Check if a director's salary is above the average of their country
+DELIMITER //
+
+CREATE PROCEDURE check_director_above_country_average (
+    IN p_director_id INT,
+    OUT p_result VARCHAR(50)
+)
+BEGIN
+        DECLARE v_salary DECIMAL;
+END //
+
+// DELIMITER ;
+
 -- Exercise 4 – Check if a director's salary is above the average of their country
 DELIMITER //
 
