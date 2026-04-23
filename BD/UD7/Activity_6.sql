@@ -156,4 +156,17 @@ END //
 CALL classify_movie_age(1, @category);
 SELECT @category;
 
--- Exercise 6
+-- Exercise 6 – Count movies of a genre with at least a minimum number of actors
+CREATE PROCEDURE count_movies_by_genre_min_actors_if (
+    IN p_genre_id INT,
+    IN p_min_actors INT,
+    OUT p_total_movies INT
+)
+BEGIN
+    DECLARE total INT;
+
+    SELECT COUNT(movie_id) AS 'total_movies'
+        FROM movie
+        WHERE genre_id = p_genre_id
+        GROUP BY ;
+END;
