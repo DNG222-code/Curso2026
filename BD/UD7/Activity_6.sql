@@ -157,16 +157,75 @@ CALL classify_movie_age(1, @category);
 SELECT @category;
 
 -- Exercise 6 – Count movies of a genre with at least a minimum number of actors
+DELIMITER //
+
 CREATE PROCEDURE count_movies_by_genre_min_actors_if (
     IN p_genre_id INT,
     IN p_min_actors INT,
     OUT p_total_movies INT
 )
 BEGIN
-    DECLARE total INT;
+    -- Variable local
+    DECLARE v_total INT;
 
-    SELECT COUNT(movie_id) AS 'total_movies'
-        FROM movie
-        WHERE genre_id = p_genre_id
-        GROUP BY ;
-END;
+    -- Contar películas del género con al menos p_min_actors actores
+    SELECT COUNT(*) INTO v_total
+    FROM (
+        SELECT m.movie_id
+        FROM movie m
+        INNER JOIN casting c ON m.movie_id = c.movie_id
+        WHERE m.genre_id = p_genre_id
+        GROUP BY m.movie_id
+        HAVING COUNT(c.actor_id) >= p_min_actors
+    ) AS subconsulta;
+
+    -- Control de NULL
+    IF v_total IS NULL THEN
+        SET p_total_movies = 0;
+    ELSE
+        SET p_total_movies = v_total;
+    END IF;
+
+END //
+
+DELIMITER ;
+
+CALL count_movies_by_genre_min_actors_if(1, 1, @total_movies);
+SELECT @total_movies;
+
+-- Exercise 7 – Accumulate the maximum salary of a director’s movies
+DELIMITER //
+
+CREATE PROCEDURE accumulate_max_salary_director (
+    IN p_director_id INT,
+    INOUT p_total DECIMAL(10,2)
+)
+BEGIN
+    -- Variable local
+    DECLARE v_max_salary DECIMAL(10,2);
+
+    -- Obtener el salario máximo usando subconsulta
+    SELECT MAX(salary) INTO v_max_salary
+    FROM (
+        SELECT c.salary
+        FROM movie m
+        INNER JOIN casting c ON m.movie_id = c.movie_id
+        WHERE m.director_id = p_director_id
+    ) AS subquery;
+
+    -- Control de NULL
+    IF v_max_salary IS NULL THEN
+        SET v_max_salary = 0;
+    END IF;
+
+    -- Acumular en el parámetro INOUT
+    SET p_total = p_total + v_max_salary;
+
+END //
+
+DELIMITER ;
+
+CALL accumulate_max_salary_director (1, @total);
+SELECT @total;
+
+-- Exercise 8 – Accumulate the difference between the maximum and minimum salaries of actors of a director
