@@ -229,3 +229,29 @@ CALL accumulate_max_salary_director (1, @total);
 SELECT @total;
 
 -- Exercise 8 – Accumulate the difference between the maximum and minimum salaries of actors of a director
+DELIMITER //
+
+CREATE PROCEDURE accumulate_salary_difference_director (
+    IN p_director_id INT,
+    INOUT p_total_difference DOUBLE
+)
+BEGIN
+    DECLARE v_maximum_salary DOUBLE;
+    DECLARE v_minimum_salary DOUBLE;
+    DECLARE v_difference_values DOUBLE;
+
+    SELECT MAX(director_salary) AS 'maximum_salary'
+    INTO v_maximum_salary
+    FROM director
+    WHERE director_id = p_director_id;
+
+    SELECT MIN(director_salary) AS 'minimum_salary'
+    INTO v_minimum_salary
+    FROM director
+    WHERE director_id = p_director_id;
+
+    SET v_difference_values = v_maximum_salary - v_minimum_salary;
+    SET p_total_difference = COALESCE(p_total_difference, 0) + COALESCE(v_difference_values, 0);
+END //
+
+DELIMITER ;
