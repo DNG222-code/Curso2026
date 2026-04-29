@@ -255,3 +255,80 @@ BEGIN
 END //
 
 DELIMITER ;
+
+CALL accumulate_salary_difference_director (2, @total_difference);
+SELECT @total_difference;
+
+-- Exercise 9 – Update a director’s salary based on the number of movies
+DELIMITER //
+
+CREATE PROCEDURE update_director_salary_by_movies (
+        IN p_director_id INT
+)
+BEGIN
+    DECLARE v_total_movies INT;
+
+    SELECT COUNT(movie_id) AS 'total_movies'
+    INTO v_total_movies
+    FROM movie
+    WHERE director_id = p_director_id;
+
+    UPDATE movie
+    INNER JOIN director d ON movie.director_id = d.director_id
+    SET director_salary = 500
+    WHERE v_total_movies = 1 OR v_total_movies = 2;
+
+    UPDATE movie
+    INNER JOIN director d ON movie.director_id = d.director_id
+    SET director_salary = 1000
+    WHERE v_total_movies >= 3 AND v_total_movies <= 5;
+
+    UPDATE movie
+    INNER JOIN director d ON movie.director_id = d.director_id
+    SET director_salary = 2000
+    WHERE v_total_movies > 5;
+END //
+
+DELIMITER ;
+
+CALL update_director_salary_by_movies(1);
+
+-- Exercise 10 – Accumulate points for a director based on how many movies exceed the average duration
+
+DELIMITER //
+
+CREATE PROCEDURE accumulate_director_points_above_average_case (
+    IN p_director_id INT,
+    INOUT p_total_points INT
+)
+BEGIN
+    DECLARE v_greater_duration INT;
+
+    IF p_total_points IS NULL THEN
+        SET p_total_points = 0;
+    END IF;
+
+    SELECT COUNT(*) AS 'greater_duration'
+    INTO v_greater_duration
+    FROM movie
+    WHERE director_id = p_director_id
+    AND duration_minutes > (SELECT AVG(duration_minutes) FROM movie);
+
+    CASE
+        WHEN v_greater_duration = 1 THEN
+            SET p_total_points = p_total_points + 1;
+        WHEN v_greater_duration = 2 OR v_greater_duration = 3 THEN
+            SET p_total_points = p_total_points + 4;
+        WHEN v_greater_duration > 3 THEN
+            SET p_total_points = p_total_points + 6;
+        ELSE
+            SET p_total_points = p_total_points;
+    END CASE;
+
+END //
+
+DELIMITER ;
+
+SET @total_points = 2;
+CALL accumulate_director_points_above_average_case(2, @total_points);
+SELECT @total_points;
