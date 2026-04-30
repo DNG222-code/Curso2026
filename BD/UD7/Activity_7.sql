@@ -76,3 +76,50 @@ BEGIN
 END //
 
 DELIMITER ;
+
+CALL accumulate_salary_movie(2, @total);
+SELECT @total;
+
+-- Exercise 4 – DISTINCT (genres of a director)
+
+DELIMITER //
+
+CREATE PROCEDURE distinct_genres_director (
+    IN p_id_director INT,
+    OUT p_total_genres DECIMAL(10,2)
+)
+BEGIN
+    DECLARE v_distinct_genres VARCHAR(20);
+
+    SELECT COUNT(DISTINCT genre_id) AS 'genres'
+    INTO v_distinct_genres
+    FROM movie
+    WHERE director_id = p_id_director;
+
+    SET p_total_genres = COALESCE(v_distinct_genres, 0);
+END //
+
+DELIMITER ;
+
+CALL distinct_genres_director(2, @total_genres);
+SELECT @total_genres;
+
+-- Exercise 5 – WHILE
+DELIMITER //
+
+CREATE PROCEDURE bonus_director_while (
+    IN p_id_director INT,
+    OUT p_bonus DOUBLE
+)
+BEGIN
+    DECLARE v_total_movies INT;
+
+    SELECT COUNT(director_id) AS 'director_movies'
+    INTO v_total_movies
+    FROM movie
+    WHERE director_id = p_id_director;
+
+
+END //
+
+DELIMITER ;
