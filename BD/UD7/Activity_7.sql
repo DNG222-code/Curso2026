@@ -113,12 +113,67 @@ CREATE PROCEDURE bonus_director_while (
 )
 BEGIN
     DECLARE v_total_movies INT;
+    DECLARE v_i INT DEFAULT 0;
 
     SELECT COUNT(director_id) AS 'director_movies'
     INTO v_total_movies
     FROM movie
     WHERE director_id = p_id_director;
 
+    SET p_bonus = 0;
+
+    WHILE v_i < v_total_movies DO
+        SET p_bonus = p_bonus + 10;
+        SET v_i = v_i + 1;
+    END WHILE;
+
+END //
+
+DELIMITER ;
+
+CALL bonus_director_while (2, @bonus);
+SELECT @bonus;
+
+-- Exercise 6 – REPEAT
+DELIMITER //
+
+CREATE PROCEDURE penalty_director_repeat (
+    IN p_id_director INT,
+    OUT p_penalty DOUBLE
+)
+BEGIN
+    DECLARE v_total_movies INT;
+    DECLARE v_i INT DEFAULT 1;
+
+    SELECT COUNT(director_id) AS 'director_movies'
+    INTO v_total_movies
+    FROM movie
+    WHERE director_id = p_id_director;
+
+    SET p_penalty = 0;
+
+    IF v_total_movies > 0 THEN
+        REPEAT
+            SET p_penalty = p_penalty - 5;
+            SET v_i = v_i + 1;
+        UNTIL v_i > v_total_movies
+        END REPEAT;
+    END IF;
+
+END //
+
+DELIMITER ;
+
+CALL penalty_director_repeat(2, @penalty);
+SELECT @penalty;
+
+-- Exercise 7 – REPEAT + COALESCE
+DELIMITER //
+
+CREATE PROCEDURE accumulate_avg_duration_repeat (
+
+)
+BEGIN
 
 END //
 
