@@ -171,9 +171,29 @@ SELECT @penalty;
 DELIMITER //
 
 CREATE PROCEDURE accumulate_avg_duration_repeat (
-
+    IN p_id_director INT,
+    IN p_repetitions INT,
+    OUT p_total DECIMAL(10,2)
 )
 BEGIN
+    DECLARE v_avg_duration DECIMAL(10,2);
+    DECLARE v_counter INT DEFAULT 0;
+
+    -- Obtener la media de duración (si es NULL → 50)
+    SELECT COALESCE(AVG(m.duration_minutes), 50)
+    INTO v_avg_duration
+    FROM movie m
+    WHERE m.director_id = p_id_director;
+
+    -- Inicializar total
+    SET p_total = 0;
+
+    -- Bucle REPEAT
+    REPEAT
+        SET p_total = p_total + v_avg_duration;
+        SET v_counter = v_counter + 1;
+    UNTIL v_counter >= p_repetitions
+        END REPEAT;
 
 END //
 
