@@ -198,3 +198,76 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- Exercise 8 – LOOP + LEAVE
+DELIMITER //
+
+CREATE PROCEDURE points_director_loop (
+    IN p_id_director INT,
+    OUT p_points INT
+)
+BEGIN
+    DECLARE v_total_movies INT DEFAULT 0;
+    DECLARE v_conter INT DEFAULT 0;
+
+    SELECT COUNT(movie_id)
+        INTO v_total_movies
+    FROM movie
+    WHERE director_id = p_id_director;
+
+    SET p_points = 0;
+
+    movie_loop: LOOP
+        IF v_conter >= 3 THEN
+            LEAVE movie_loop;
+        END IF;
+
+        SET p_points = p_points + 10;
+
+        SET v_conter = v_conter + 1;
+    END LOOP movie_loop;
+
+END //
+
+DELIMITER ;
+
+SET @points = 0;
+CALL points_director_loop(2, @points);
+SELECT @points;
+
+-- Exercise 9 – LOOP + logic + LEAVE
+DELIMITER //
+
+CREATE PROCEDURE special_bonus_loop (
+    IN p_id_director INT,
+    OUT p_bonus DOUBLE
+)
+BEGIN
+    DECLARE v_movie INT DEFAULT 0;
+    DECLARE v_counter INT DEFAULT 0;
+
+    SELECT movie_id
+    INTO v_movie
+    FROM movie
+    WHERE director_id = p_id_director;
+
+    SET p_bonus = 0;
+
+    SET v_counter = 1;
+
+    movie_loop: LOOP
+        IF v_counter = 1 OR v_counter = 2 THEN
+            SET p_bonus = p_bonus + 10;
+        ELSEIF v_counter = 3 THEN
+            SET p_bonus = p_bonus + 20;
+        ELSEIF v_counter > 3 OR v_counter > v_movie THEN
+            LEAVE movie_loop;
+        END IF;
+
+        SET v_counter = v_counter + 1;
+
+    END LOOP;
+
+END //
+
+DELIMITER ;
