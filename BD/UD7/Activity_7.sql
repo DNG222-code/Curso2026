@@ -271,3 +271,52 @@ BEGIN
 END //
 
 DELIMITER ;
+
+SET @bonus = 0;
+CALL special_bonus_loop(2, @bonus);
+SELECT @bonus;
+
+-- Exercise 10 – WHILE + ITERATE
+DELIMITER //
+
+CREATE PROCEDURE sum_even_movies (
+    IN p_id_director INT,
+    OUT p_total INT
+)
+BEGIN
+    DECLARE v_movie_count INT DEFAULT 0;
+    DECLARE v_i INT DEFAULT 0;
+    DECLARE v_aux INT DEFAULT 0;
+
+    -- Count movies of the director
+    SELECT COUNT(*)
+    INTO v_movie_count
+    FROM movie
+    WHERE director_id = p_id_director;
+
+    SET p_total = 0;
+
+    movie_loop: WHILE v_i < v_movie_count DO
+
+        SET v_i = v_i + 1;
+        SET v_aux = v_aux + 1;
+
+        -- Only add points every two movies
+        IF v_aux < 2 THEN
+            ITERATE movie_loop;
+        END IF;
+
+        SET p_total = p_total + 10;
+
+        -- Reset auxiliary counter
+        SET v_aux = 0;
+
+    END WHILE movie_loop;
+
+END //
+
+DELIMITER ;
+
+SET @total = 0;
+CALL sum_even_movies(2, @total);
+SELECT @total;
