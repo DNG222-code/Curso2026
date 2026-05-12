@@ -146,4 +146,44 @@ END //
 
 DELIMITER ;
 
-INSERT INTO songs('Song1', 'Pop', 200, 8);
+-- 2. Prevent empty genre (On Update)
+DELIMITER //
+
+CREATE TRIGGER updating_song BEFORE UPDATE ON songs
+    FOR EACH ROW
+    BEGIN
+        IF OLD.genre = '' THEN
+            SET NEW.genre = 'Unknown';
+        END IF;
+    END //
+
+DELIMITER ;
+
+-- 3. Log album insertion
+DELIMITER //
+
+CREATE TRIGGER log_album AFTER INSERT ON albums
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO song_logs(message)
+        VALUES(CONCAT('New album inserted: ', NEW.album_title));
+    END //
+
+DELIMITER ;
+
+-- 4. Log artist country change
+DELIMITER //
+
+CREATE TRIGGER artist_country AFTER UPDATE ON artists
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO song_logs(message)
+        VALUES(CONCAT('Country change: ', OLD.country, ' changed to ', NEW.country));
+    END //
+
+DELIMITER ;
+
+-- 5. Log user email change
+DELIMITER //
+
+CREATE TRIGGER updating_email AFTER UPDATE
