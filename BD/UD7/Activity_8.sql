@@ -186,4 +186,79 @@ DELIMITER ;
 -- 5. Log user email change
 DELIMITER //
 
-CREATE TRIGGER updating_email AFTER UPDATE
+CREATE TRIGGER updating_email AFTER UPDATE ON users
+    FOR EACH ROW
+    BEGIN
+        IF OLD.email <> NEW.email THEN
+            INSERT INTO song_logs(message)
+            VALUES(CONCAT('Email change for user: ', OLD.username));
+        END IF;
+
+    END //
+
+DELIMITER ;
+
+-- 6. Log album deletion
+DELIMITER //
+
+CREATE TRIGGER deletting_album AFTER DELETE ON albums
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO song_logs(message)
+        VALUES (CONCAT('Album deleted: ', OLD.album_title));
+
+    END //
+
+DELIMITER ;
+
+-- 7. Log info before deleting a song
+DELIMITER //
+
+CREATE TRIGGER deleting_song BEFORE DELETE ON songs
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO song_logs(message)
+        VALUES(CONCAT('The song ', OLD.song_title, ' of genre ', OLD.genre, ' is about to be deleted.'));
+    END //
+
+DELIMITER ;
+
+-- 8. Correct future registration date
+DELIMITER //
+
+CREATE TRIGGER later_than_current_date BEFORE INSERT ON users
+    FOR EACH ROW
+    BEGIN
+        IF NEW.registration_date > CURDATE() THEN
+            SET NEW.registration_date = CURDATE();
+        END IF;
+
+    END //
+
+DELIMITER ;
+
+-- 9. Log new play with details
+DELIMITER //
+
+CREATE TRIGGER playback_record AFTER INSERT ON plays
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO song_logs(message)
+        VALUES (CONCAT('New playback: user [', NEW.user_id, '], song [', NEW.song_id, ']'));
+    END //
+
+DELIMITER ;
+
+-- 10. Log release year change
+DELIMITER //
+
+CREATE TRIGGER release_year AFTER UPDATE ON albums
+    FOR EACH ROW
+    BEGIN
+        IF OLD.release_year <> NEW.release_year THEN
+            INSERT INTO song_logs(message)
+            VALUES(CONCAT('Year change for album ', NEW.album_title, ': ', OLD.release_year, ' --> ', NEW.release_year));
+        END IF;
+    END //
+
+DELIMITER ;
