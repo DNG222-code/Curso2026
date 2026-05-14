@@ -114,3 +114,70 @@ CREATE TRIGGER total_automatically BEFORE INSERT ON orders
     END //
 
 DELIMITER ;
+
+-- 4. Decrease stock after order
+DELIMITER //
+
+CREATE TRIGGER decrease_stock AFTER INSERT ON orders
+    FOR EACH ROW
+    BEGIN
+        DECLARE stock INT;
+
+        SELECT stock INTO stock
+        FROM products
+        WHERE id_product = NEW.id_product;
+
+        SET stock = stock - NEW.quantity;
+        UPDATE products
+        SET stock = stock WHERE id_product = NEW.id_product;
+    END //
+
+DELIMITER ;
+
+-- 5. Prevent order deletion
+DELIMITER //
+
+CREATE TRIGGER prevent_order BEFORE DELETE ON orders
+    FOR EACH ROW
+    BEGIN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Orders cannot be deleted';
+    END //
+
+DELIMITER ;
+
+-- 6. Adjust stock after updating an order
+DELIMITER //
+
+CREATE TRIGGER adjust_stock AFTER UPDATE ON orders
+    FOR EACH ROW
+    BEGIN
+        IF OLD.quantity > NEW.quantity THEN
+            UPDATE products
+            SET stock = stock + (OLD.quantity - NEW.quantity)
+            WHERE id_product = NEW.id_product;
+        END IF;
+    END //
+
+DELIMITER ;
+
+-- 7. Validate order date
+DELIMITER //
+
+CREATE TRIGGER validate_order_date BEFORE INSERT ON orders
+    FOR EACH ROW
+    BEGIN
+        IF NEW.order_date < CURDATE() THEN
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid date';
+        END IF;
+    END //
+
+DELIMITER ;
+
+-- 8. Prevent duplicate orders
+DELIMITER //
+
+CREATE TRIGGER prevent_duplicate BEFORE INSERT ON orders
+    FOR EACH ROW
+    BEGIN
+        SELECT id_customer FROM orders
+    END //
