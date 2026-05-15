@@ -176,8 +176,19 @@ DELIMITER ;
 -- 8. Prevent duplicate orders
 DELIMITER //
 
-CREATE TRIGGER prevent_duplicate BEFORE INSERT ON orders
-    FOR EACH ROW
-    BEGIN
-        SELECT id_customer FROM orders
-    END //
+CREATE TRIGGER prevent_duplicate_orders
+BEFORE INSERT ON orders
+FOR EACH ROW
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM orders
+        WHERE id_customer = NEW.id_customer
+          AND id_product = NEW.id_product
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Duplicate order';
+    END IF;
+END //
+
+DELIMITER ;
