@@ -44,3 +44,22 @@ COMMIT;
 -- Exercise 3. Cancel an operation
 START TRANSACTION;
 
+UPDATE accounts
+SET balance = balance - 70
+WHERE name = 'Luis';
+
+UPDATE accounts
+SET balance = balance + 70
+WHERE name = 'Ana';
+
+INSERT INTO transactions (origin, destination, amount)
+VALUES ('Luis', 'Ana', 70);
+
+ROLLBACK;
+
+SELECT * FROM accounts;
+SELECT * FROM transactions;
+
+-- Exercise 4. Insufficient balance error
+START TRANSACTION;
+
