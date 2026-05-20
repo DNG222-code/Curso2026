@@ -61,5 +61,20 @@ SELECT * FROM accounts;
 SELECT * FROM transactions;
 
 -- Exercise 4. Insufficient balance error
+SELECT balance FROM accounts
+WHERE name = 'Luis';
+
 START TRANSACTION;
 
+UPDATE accounts
+SET balance = balance - 500
+WHERE name = 'Luis'
+AND balance >= 500;
+
+UPDATE accounts
+SET balance = balance + 500
+WHERE name = 'Ana';
+
+COMMIT;
+
+-- Exercise 5. Incomplete operation
