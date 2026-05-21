@@ -78,3 +78,57 @@ WHERE name = 'Ana';
 COMMIT;
 
 -- Exercise 5. Incomplete operation
+START TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 20
+WHERE name = 'Ana';
+
+INSERT INTO transactions (origin, destination, amount)
+VALUES ('Ana', 'Luis', 20);
+
+
+SELECT * FROM accounts;
+SELECT * FROM transactions;
+
+ROLLBACK;
+
+SELECT * FROM accounts;
+SELECT * FROM transactions;
+
+-- Exercise 6. Relation with ACID
+START TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 40
+WHERE name = 'Ana';
+
+UPDATE accounts
+SET balance = balance + 40
+WHERE name = 'Marta';
+
+COMMIT;
+
+INSERT INTO transactions (origin, destination, amount)
+VALUES ('Ana', 'Marta', 40);
+
+-- Exercise 7. Prevent negative balances
+ALTER TABLE accounts
+ADD CONSTRAINT chk_positive_balance CHECK (balance >= 0);
+
+START TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 1000
+WHERE name = 'Luis';
+
+UPDATE accounts
+SET balance = balance + 1000
+WHERE name = 'Ana';
+
+INSERT INTO transactions (origin, destination, amount)
+VALUES ('Luis', 'Ana', 1000);
+
+COMMIT;
+
+-- Exercise 8. Final challenge
