@@ -132,3 +132,19 @@ VALUES ('Luis', 'Ana', 1000);
 COMMIT;
 
 -- Exercise 8. Final challenge
+START TRANSACTION;
+
+UPDATE accounts
+SET balance = balance - 60
+WHERE name = 'Ana';
+
+UPDATE accounts
+SET balance = balance + 60
+WHERE name = 'Luis';
+
+ROLLBACK ;
+
+INSERT INTO transactions (origin, destination, amount)
+VALUES ('Ana', 'Luis', 60);
+
+COMMIT;
