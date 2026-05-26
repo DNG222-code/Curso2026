@@ -148,3 +148,19 @@ INSERT INTO transactions (origin, destination, amount)
 VALUES ('Ana', 'Luis', 60);
 
 COMMIT;
+
+-- Exercise 9. Deleting an account safely
+
+START TRANSACTION;
+
+-- 1. Delete all Marta's transactions
+DELETE FROM transactions
+WHERE origin = 'Marta'
+   OR destination = 'Marta';
+
+-- 2. Delete Marta's account
+DELETE FROM accounts
+WHERE name = 'Marta';
+
+-- 3. Save changes
+COMMIT;
