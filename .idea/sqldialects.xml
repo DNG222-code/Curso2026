@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/BD/UD6/Activity_7.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/UD6/Activity_8.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/UD6/Activity_9.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/UD7/Activity_View_1.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/UD7/movie_platform.sql" dialect="MySQL" />
+    <file url="PROJECT" dialect="MySQL" />
+  </component>
+</project>
