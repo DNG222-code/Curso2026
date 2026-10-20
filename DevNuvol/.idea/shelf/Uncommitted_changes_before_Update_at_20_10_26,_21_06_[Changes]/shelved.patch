@@ -1,0 +1,2161 @@
+Index: ../PRG2026/UD3/exercici3pt1Corregido/PracticaTipusDades1.java
+===================================================================
+diff --git a/../PRG2026/UD3/exercici3pt1Corregido/PracticaTipusDades1.java b/../PRG2026/UD3/exercici3pt1Corregido/PracticaTipusDades1.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/exercici3pt1Corregido/PracticaTipusDades1.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,22 +0,0 @@
+-package exercici3pt1Corregido;
+-
+-public class PracticaTipusDades1 {
+-    public static void main(String[] args) {
+-
+-        int valorInt = 35; // Creació assignació
+-        // valorInt = valorInt + 2;
+-
+-        valorInt += 2;
+-
+-        String valorString = "Aprenentatge";
+-
+-        double valorDouble = 45.98;
+-        valorDouble -= 1.5;
+-
+-        System.out.println("valorInt: " + valorInt);
+-        System.out.println("valorString: " + valorString);
+-        System.out.println("valorDouble: " + valorDouble);
+-
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../PRG2026/UD3/exercici3pt1pt2Corregido/PractivaTipusDades2.java
+===================================================================
+diff --git a/../PRG2026/UD3/exercici3pt1pt2Corregido/PractivaTipusDades2.java b/../PRG2026/UD3/exercici3pt1pt2Corregido/PractivaTipusDades2.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/exercici3pt1pt2Corregido/PractivaTipusDades2.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,21 +0,0 @@
+-package exercici3pt1pt2Corregido;
+-
+-public class PractivaTipusDades2 {
+-
+-    public static void main(String[] args) {
+-
+-        int valorInt = 100;
+-        valorInt -= 1;
+-
+-        String valorString = "Programació en Java";
+-
+-        double valorDouble = 10.75d;
+-        valorDouble += 2; // valorDouble = ValorDouble + 2;
+-
+-        System.out.println("valorInt: " + valorInt);
+-        System.out.println("valorString: \"" + valorString + "\""); // Escapar cadenes "\" + "\"
+-        System.out.println("valorDouble: " + valorDouble);
+-
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../PRG2026/UD4/activitat4pt7/Test.java
+===================================================================
+diff --git a/../PRG2026/UD4/activitat4pt7/Test.java b/../PRG2026/UD4/activitat4pt7/Test.java
+deleted file mode 100644
+--- a/../PRG2026/UD4/activitat4pt7/Test.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,58 +0,0 @@
+-package activitat4pt7;
+-
+-import java.util.Scanner; // Importamos la clase Scanner.
+-
+-public class Test {
+-
+-    public static void main(String[] args) {
+-
+-        // Declaramos las variables
+-        Scanner sc = new Scanner(System.in);
+-
+-        // Variable para el número.
+-        int binario;
+-
+-        // Declaramos la variable para el resto.
+-        int resto;
+-
+-        // Declaramos la variable para la potencia.
+-        int potencia = 0;
+-
+-        // Variable para el decimal.
+-        int decimal = 0;
+-
+-        // Pedimos el número al usuario.
+-        System.out.println("Introduce un número binario, por favor: ");
+-        binario = sc.nextInt(); // Guardamos el número en (n).
+-
+-        // Cálculo de binario a decimal.
+-        while (binario > 0) {
+-            resto = binario % 10; // Sacamos la última cifra.
+-
+-            // Comprobamos de que sea un número aleatorio.
+-            if (resto == 1) {
+-                decimal += (int) Math.pow(2, potencia); // Guardamos el cálculo de la potencia en la variable decimal.
+-
+-            } else if (resto != 0) {
+-                System.out.println("ERROR: No es un número binario.");
+-
+-            }
+-
+-        }
+-
+-        // Imprimimos el número decimal.
+-        System.out.println(decimal);
+-
+-        // Dibujamos el triángulo
+-        for (int i = binario; i >= 1; i--) {
+-            for (int j = 0; j < i; j++) {
+-                System.out.print("*"); // Sin salto de línea
+-
+-            }
+-            System.out.println(); // Salto de línea al final de cada fila
+-        }
+-
+-        sc.close();
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../BD/UD4/Activity_5.sql
+===================================================================
+diff --git a/../BD/UD4/Activity_5.sql b/../BD/UD4/Activity_5.sql
+deleted file mode 100644
+--- a/../BD/UD4/Activity_5.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,154 +0,0 @@
+-USE blogdb;
+-
+-SET SQL_SAFE_UPDATES = 0;
+-
+--- 1
+-CREATE TABLE user_test_blog (
+-	user_id INT AUTO_INCREMENT PRIMARY KEY,
+-    name VARCHAR(50),
+-    email VARCHAR(100),
+-    role VARCHAR(20),
+-    phone VARCHAR(20),
+-    registration_date DATE
+-);
+-
+--- 2
+-INSERT INTO user_test_blog (name, email, role, phone, registration_date) 
+-VALUES
+-('Maria', 'maria@example.com', 'admin', '600111222', '2024-01-10'),
+-('Luis', 'luis@hotmail.com', 'guest', NULL, '2023-05-15'),
+-('Ana', 'ana@example.com', 'external', NULL, '2022-11-20'),
+-('Pedro', 'pedro@example.com', 'normal', '600333444', '2025-02-01'),
+-('Marta', 'marta@hotmail.com', 'pending', NULL, '2023-03-05'),
+-('Jorge', 'jorge@example.com', 'blocked', NULL, '2022-12-12'),
+-('Miguel', 'miguel@example.com', 'moderator', '600555666', '2024-06-01'),
+-('Lucia', 'lucia@example.com', 'external', '600777888', '2021-09-09'),
+-('Sergio', 'sergio@example.com', 'guest', NULL, '2020-10-10'),
+-('Manuel', 'manuel@example.com', 'normal', NULL, '2023-08-08'),
+-('Raul', 'raul@hotmail.com', 'external', NULL, '2020-01-01'),
+-('Laura', 'laura@example.com', 'verified', '600999000', '2024-03-03');
+-
+--- 3
+-DELETE FROM user_test_blog
+-WHERE user_id = 4;
+-
+--- 4
+-DELETE FROM user_test_blog
+-WHERE role = 'guest';
+-
+-ALTER TABLE post
+-MODIFY post_id INT NOT NULL AUTO_INCREMENT,
+-ADD PRIMARY KEY (post_id);
+-
+--- 5
+-DELETE FROM post
+-WHERE post_id > 2;
+-
+--- 6
+-INSERT INTO user_test_blog (name, email, role, phone, registration_date)
+-VALUES
+-('Carlos', 'carlos@example.com', 'admin', '600101010', '2024-02-10'), 
+-('Elena', 'elena@hotmail.com', 'guest', NULL, '2023-07-15'), 
+-('Rosa', 'rosa@example.com', 'external', NULL, '2022-05-20'), 
+-('David', 'david@example.com', 'normal', '600202020', '2025-01-02'), 
+-('Luciana', 'luciana@hotmail.com', 'pending', NULL, '2023-09-05'), 
+-('Samuel', 'samuel@example.com', 'blocked', NULL, '2022-12-20'), 
+-('Paula', 'paula@example.com', 'moderator', '600303030', '2024-06-21'), 
+-('Hector', 'hector@example.com', 'external', '600404040', '2021-11-11'), 
+-('Noelia', 'noelia@example.com', 'guest', NULL, '2020-02-12'), 
+-('German', 'german@example.com', 'normal', NULL, '2023-10-18'), 
+-('Roberto', 'roberto@hotmail.com', 'external', NULL, '2020-01-22'), 
+-('Sonia', 'sonia@example.com', 'verified', '600505050', '2024-04-04');
+-
+--- 7
+-DELETE FROM user_test_blog
+-WHERE role <> 'admin';
+-
+--- 8
+-DELETE FROM user_test_blog
+-WHERE role = 'external'
+-AND phone IS NULL;
+-
+--- 9
+-DELETE FROM user_test_blog
+-WHERE role = 'blocked'
+-OR role = 'pending';
+-
+--- 10
+-DELETE FROM comment
+-WHERE comment_text IS NULL;
+-
+--- 11
+-DELETE FROM user_test_blog
+-WHERE user_id IN (2, 5, 8, 20, 25, 36, 38, 41);
+-
+--- 12
+-DELETE FROM user_test_blog
+-WHERE role NOT IN ('admin', 'external',  'verified');
+-
+--- 13
+-DELETE FROM post
+-WHERE post_id BETWEEN 3 AND 6;
+-
+--- 14
+-DELETE FROM user_test_blog
+-WHERE email LIKE '%@hotmail.com';
+-
+--- 15
+-CREATE TABLE category (
+-	name VARCHAR(50),
+-    code VARCHAR(10)
+-);
+-
+-INSERT INTO category(name, code)
+-VALUES
+-('Technology', 'A1'), 
+-('Cooking', 'A2'), 
+-('Travel', 'AB'), 
+-('Education', 'A_BX'), 
+-('Sports', 'X1'), 
+-('Science', 'A12'), 
+-('Art', 'B_'); 
+-
+--- 16
+-DELETE FROM category
+-WHERE code LIKE 'A_';
+-
+--- 17
+-DELETE FROM user_test_blog
+-WHERE name NOT LIKE '%M';
+-
+--- 18
+-TRUNCATE TABLE category;
+-
+--- 19
+-DROP TABLE category;
+-
+--- 20
+-DELETE FROM user_test_blog
+-WHERE role IN ('external', 'guest')
+-AND user_id > 5;
+-
+--- 21
+-DELETE FROM user_test_blog
+-WHERE role NOT IN ('admin', 'guest')
+-AND phone IS NULL;
+-
+--- 22
+-DELETE FROM post
+-WHERE title LIKE '%A'
+-AND post_id BETWEEN 3 AND 6;
+-
+--- 23
+-DELETE FROM user_test_blog
+-WHERE IF (role = 'admin', 0, user_id > 10);
+-
+--- 24
+-DELETE FROM comment
+-WHERE user_id = 1 OR user_id = 2 OR user_id = 3
+-AND comment_text LIKE '%Comment';
+-
+--- 25
+-DELETE FROM user_test_blog
+-WHERE role IN('external', 'guest')
+-AND registration_date < '2024-01-01';
+Index: ../BD/UD4/Ejercicio_clase_II.sql
+===================================================================
+diff --git a/../BD/UD4/Ejercicio_clase_II.sql b/../BD/UD4/Ejercicio_clase_II.sql
+deleted file mode 100644
+--- a/../BD/UD4/Ejercicio_clase_II.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,188 +0,0 @@
+-USE tienda_menorca;
+-
+--- DDL
+--- 1.
+-ALTER TABLE cliente
+-ADD CONSTRAINT uq_dni
+-UNIQUE (dni);
+-
+--- 2.
+-ALTER TABLE cliente
+-MODIFY telefono VARCHAR(20) NULL;
+-
+--- 3.
+-ALTER TABLE pedido
+-MODIFY id_cliente INT NOT NULL;
+-
+--- 4.
+-ALTER TABLE pago
+-DROP metodo_pago;
+-
+--- INSERTS
+-
+--- 5
+-INSERT INTO cliente
+-VALUES (1, 'Juan', 'Perez', '', '123456789');
+-
+--- 6
+-INSERT INTO pedido (id_pedido, fecha_pedido)
+-VALUES (2, NOW()),
+-       (3, '2024-01-10');
+-
+--- 7
+-INSERT INTO pago (id_pago, fecha_pago)
+-VALUES (4, NOW()),
+-       (5, NOW());
+-
+--- 8
+-INSERT INTO cliente (id_cliente, email)
+-VALUES (1, LOWER('@Gmail.Com'));
+-
+--- 9
+-INSERT INTO cliente (id_cliente, telefono)
+-VALUES (1, CONCAT('+34-', 600111222));
+-
+--- 10
+-INSERT INTO pedido (id_pedido, fecha_pedido, importe_total, id_cliente)
+-VALUES (6, NOW(), 1000, 1);
+-
+-INSERT INTO pago (id_pago, fecha_pago, importe_pagado, metodo_pago, id_pedido)
+-VALUES (7, NOW(), 71000, 'Efectivo', LAST_INSERT_ID());
+-
+--- UPDATES
+-
+--- 11
+-UPDATE cliente
+-SET nombre = 'VIP'
+-WHERE id_cliente = 1;
+-
+--- 12
+-UPDATE cliente
+-SET email = LOWER('@HOtmail.com')
+-WHERE email IS NOT NULL;
+-
+--- 13
+-UPDATE pedido
+-SET importe_total = 0
+-WHERE importe_total IS NULL;
+-
+--- 14
+-UPDATE pedido
+-SET importe_total = importe_total + 10
+-WHERE importe_total < 20 OR fecha_pedido = '2024-01-01';
+-
+--- 15
+-UPDATE pedido
+-SET importe_total =
+-        IF (importe_total < 30 AND id_cliente = 1,
+-            30,
+-            IF (importe_total > 100 OR fecha_pedido = '2024-02-01', 100),
+-            importe_total
+-        );
+-
+--- DELETES
+-
+--- 16
+-DELETE FROM cliente
+-WHERE id_cliente = 4;
+-
+--- 17
+-DELETE FROM pago
+-WHERE importe_pagado IS NULL;
+-
+--- 18
+-DELETE FROM pedido
+-WHERE id_pedido > 10;
+-
+--- 19
+-DELETE FROM cliente
+-WHERE email LIKE '%hotmail.com';
+-
+--- 20
+-TRUNCATE TABLE cliente_prueba;
+-
+--- 21
+-DROP TABLE cliente_prueba;
+-
+--- BLOQUE E - SELECT
+-
+--- 22.
+-SELECT * FROM cliente;
+-
+--- 23.
+-SELECT nombre, email, telefono FROM cliente
+-WHERE telefono IS NULL;
+-
+--- 24.
+-SELECT nombre FROM cliente
+-WHERE nombre LIKE '% %';
+-
+--- 25.
+-SELECT nombre, email FROM cliente
+-WHERE email LIKE '%@gmail.com%';
+-
+--- 26.
+-SELECT * FROM pedido
+-WHERE id_pedido >= 3 AND pedido.id_pedido <= 7;
+-
+--- 27.
+-SELECT * FROM pedido
+-ORDER BY fecha_pedido DESC
+-LIMIT 5;
+-
+--- 28.
+-ALTER TABLE cliente
+-ADD COLUMN fecha_registro DATETIME;
+-
+--- 29.
+-SELECT nombre, fecha_registro FROM cliente
+-ORDER BY fecha_registro DESC
+-LIMIT 8;
+-
+--- 30.
+-SELECT id_pedido, fecha_pedido FROM pedido
+-WHERE LENGTH(fecha_pedido) = 10
+-AND fecha_pedido >= '2024-01-01';
+-
+--- 31.
+-SELECT id_pedido, fecha_pedido,
+-       IF (
+-           fecha_pedido IS NOT NULL,
+-           'Tiene fecha',
+-           'No tiene fecha',
+-
+-           IF (
+-               fecha_pedido IS NULL,
+-               'INASIGNADO',
+-               'ASIGNADO'
+-           ) AS 'estado'
+-       )
+-FROM pedido;
+-
+--- 32.
+-SELECT
+-    id_cliente,
+-    nombre,
+-    email,
+-    telefono,
+-    IF (
+-        email IS NOT NULL AND email <> ''
+-            AND telefono IS NOT NULL AND telefono <> '',
+-        'COMPLETO',
+-        IF (
+-            email IS NOT NULL AND email <> ''
+-                OR telefono IS NOT NULL AND telefono <> '',
+-            'PARCIAL',
+-            'INCOMPLETO'
+-        )
+-    ) AS perfil_contacto
+-FROM cliente
+-ORDER BY perfil_contacto, nombre
+-LIMIT 10;
+-
+--- 33.
+-SELECT id_pedido, fecha_pedido, CURRENT_DATE, DATEDIFF(CURRENT_DATE, fecha_pedido) AS 'Dias trascuridos'
+-FROM pedido
+-WHERE fecha_pedido IS NOT NULL
+-ORDER BY fecha_pedido
+-LIMIT 1;
+\ No newline at end of file
+Index: ../PRG2026/UD8/FITXERS BINARIS.txt
+===================================================================
+diff --git a/../PRG2026/UD8/FITXERS BINARIS.txt b/../PRG2026/UD8/FITXERS BINARIS.txt
+deleted file mode 100644
+--- a/../PRG2026/UD8/FITXERS BINARIS.txt	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,36 +0,0 @@
+-FITXERS BINARIS
+-
+-Escritura
+-
+-FileOutputStream
+-DataOutputStream
+-ObjectOutputStream
+-
+-// Métodes
+-void writeBoolean(boolean b)
+-void writeChar(int c)
+-void writeInt(int i)
+-
+-void writeObject(Object o)
+-
+-Serializar
+-Deserializar
+-
+-Interface: Serializable
+-
+-class Client implements Serializable {
+-
+-}
+-
+-LECTURA
+-
+-FileInputStream
+-ObjectInputStream
+-
+-// Métodes
+-readBolean
+-readChar
+-readInt
+-readLong
+-readDouble
+-readObject
+\ No newline at end of file
+Index: ../BD/UD4/ejercicio_repaso.sql
+===================================================================
+diff --git a/../BD/UD4/ejercicio_repaso.sql b/../BD/UD4/ejercicio_repaso.sql
+deleted file mode 100644
+--- a/../BD/UD4/ejercicio_repaso.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,87 +0,0 @@
+-USE tienda_menorca;
+-
+--- INSERTS
+-
+--- 5
+-INSERT INTO cliente
+-VALUES (1, 'Juan', 'Perez', '', '123456789');
+-
+--- 6
+-INSERT INTO pedido (id_pedido, fecha_pedido)
+-VALUES (2, NOW()),
+-        (3, '2024-01-10');
+-
+--- 7
+-INSERT INTO pago (id_pago, fecha_pago)
+-VALUES (4, NOW()),
+-       (5, NOW());
+-
+--- 8
+-INSERT INTO cliente (id_cliente, email)
+-VALUES (1, LOWER('@Gmail.Com'));
+-
+--- 9
+-INSERT INTO cliente (id_cliente, telefono)
+-VALUES (1, CONCAT('+34-', 600111222));
+-
+--- 10
+-INSERT INTO pedido (id_pedido, fecha_pedido, importe_total, id_cliente)
+-VALUES (6, NOW(), 1000, 1);
+-
+-INSERT INTO pago (id_pago, fecha_pago, importe_pagado, metodo_pago, id_pedido)
+-VALUES (7, NOW(), 71000, 'Efectivo', LAST_INSERT_ID());
+-
+--- UPDATES
+-
+--- 11
+-UPDATE cliente
+-SET nombre = 'VIP'
+-WHERE id_cliente = 1;
+-
+--- 12
+-UPDATE cliente
+-SET email = LOWER('@HOtmail.com')
+-WHERE email IS NOT NULL;
+-
+--- 13
+-UPDATE pedido
+-SET importe_total = 0
+-WHERE importe_total IS NULL;
+-
+--- 14
+-UPDATE pedido
+-SET importe_total = importe_total + 10
+-WHERE importe_total < 20 OR fecha_pedido = '2024-01-01';
+-
+--- 15
+-UPDATE pedido
+-SET importe_total =
+-    IF (importe_total < 30 AND id_cliente = 1,
+-        30,
+-        IF (importe_total > 100 OR fecha_pedido = '2024-02-01', 100),
+-        importe_total
+-    );
+-
+--- DELETES
+-
+--- 16
+-DELETE FROM cliente
+-WHERE id_cliente = 4;
+-
+--- 17
+-DELETE FROM pago
+-WHERE importe_pagado IS NULL;
+-
+--- 18
+-DELETE FROM pedido
+-WHERE id_pedido > 10;
+-
+--- 19
+-DELETE FROM cliente
+-WHERE email LIKE '%hotmail.com';
+-
+--- 20
+-TRUNCATE TABLE cliente_prueba;
+-
+--- 21
+-DROP TABLE cliente_prueba;
+Index: ../BD/UD4/tienda_menorca.sql
+===================================================================
+diff --git a/../BD/UD4/tienda_menorca.sql b/../BD/UD4/tienda_menorca.sql
+deleted file mode 100644
+--- a/../BD/UD4/tienda_menorca.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,99 +0,0 @@
+-/* =========================================
+-   BASE DE DATOS
+-   ========================================= */
+-CREATE DATABASE tienda_menorca;
+-USE tienda_menorca;
+-
+-/* =========================================
+-   TABLA: cliente
+-   ========================================= */
+-CREATE TABLE cliente (
+-    id_cliente INT AUTO_INCREMENT,
+-    dni VARCHAR(9),
+-    nombre VARCHAR(80),
+-    email VARCHAR(120),
+-    telefono VARCHAR(15),
+-    PRIMARY KEY (id_cliente),
+-    UNIQUE (email)
+-);
+-
+-/* =========================================
+-   TABLA: pedido
+-   ========================================= */
+-CREATE TABLE pedido (
+-    id_pedido INT AUTO_INCREMENT,
+-    fecha_pedido DATE,
+-    importe_total DECIMAL(10,2),
+-    id_cliente INT,
+-    PRIMARY KEY (id_pedido),
+-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+-);
+-
+-/* =========================================
+-   TABLA: pago
+-   (incluye metodo_pago para poder eliminarlo luego)
+-   ========================================= */
+-CREATE TABLE pago (
+-    id_pago INT AUTO_INCREMENT,
+-    fecha_pago DATETIME ,
+-    importe_pagado DECIMAL(10,2) ,
+-    metodo_pago VARCHAR(30) ,
+-    id_pedido INT,
+-    PRIMARY KEY (id_pago),
+-    FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
+-);
+-
+-/* =========================================
+-   TABLA DE PRUEBA
+-   ========================================= */
+-CREATE TABLE cliente_prueba (
+-    id_cliente INT AUTO_INCREMENT,
+-    nombre VARCHAR(80),
+-    PRIMARY KEY (id_cliente)
+-);
+-
+-/* =========================================
+-   DATOS DE EJEMPLO
+-   ========================================= */
+-
+-/* CLIENTES */
+-INSERT INTO cliente (dni, nombre, email, telefono) VALUES
+-('11111111A', 'Laura Pons', 'laura.pons@gmail.com', '600111222'),
+-('22222222B', 'Miguel Serra', 'miguel.serra@HOTMAIL.com', '600222333'),
+-('33333333C', 'Ana Riera', 'ana.riera@gmail.com', '600333444'),
+-('44444444D', 'Joan Fuster', 'joan.fuster@hotmail.com', '600444555'),
+-('55555555E', 'Maria Vila', 'maria.vila@gmail.com', '600555666'),
+-('66666666F', 'Pau Costa', 'pau.costa@yahoo.es', '600666777'),
+-('77777777G', 'Nuria Roca', 'nuria.roca@gmail.com', '600777888'),
+-('88888888H', 'Toni Febrer', 'toni.febrer@hotmail.com', '600888999'),
+-('99999999J', 'Carme Pons', 'carme.pons@gmail.com', '600999000'),
+-('12121212K', 'Biel Mas', 'biel.mas@gmail.com', '601000111'),
+-('13131313L', 'Aina Torres', 'aina.torres@outlook.com', '601111222'),
+-('14141414M', 'Marc Coll', 'marc.coll@gmail.com', '601222333');
+-
+-/* PEDIDOS */
+-INSERT INTO pedido (fecha_pedido, importe_total, id_cliente) VALUES
+-('2023-12-15', 15.00, 1),
+-('2024-01-10', 19.99, 2),
+-(NULL, 49.90, 3),
+-('2024-02-05', 120.00, 1),
+-('2024-03-01', NULL, 4),
+-('2024-01-20', 25.00, 1),
+-('2024-04-12', 75.50, 5),
+-('2024-05-30', 10.00, 6),
+-('2024-06-10', 200.00, 7),
+-('2024-07-01', 18.00, 8),
+-('2024-08-15', 55.00, 9),
+-('2024-09-01', 12.00, 10),
+-(NULL, 35.00, 11),
+-('2024-10-10', 5.00, 12);
+-
+-/* PAGOS */
+-INSERT INTO pago (fecha_pago, importe_pagado, metodo_pago, id_pedido) VALUES
+-(NOW(), 20.00, 'tarjeta', 1),
+-(NOW(), 15.00, 'bizum', 1),
+-(NOW(), NULL, 'tarjeta', 2),
+-(NOW(), 50.00, 'efectivo', 4),
+-(NOW(), 10.00, 'tarjeta', 6),
+-(NOW(), 55.00, 'tarjeta', 11),
+-(NOW(), 12.00, 'bizum', 12);
+\ No newline at end of file
+Index: ../BD/UD6/Activity_2.sql
+===================================================================
+diff --git a/../BD/UD6/Activity_2.sql b/../BD/UD6/Activity_2.sql
+deleted file mode 100644
+--- a/../BD/UD6/Activity_2.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,106 +0,0 @@
+-USE cinema;
+-
+-	-- INSERT's
+-INSERT INTO Cine (id_cine, cine_name, cine_address)
+-VALUES (3, 'Ocimax', 'C/Menorca'), (4, 'Ocimax2', 'C/Mahón'), (5, 'Ocimax3', 'C/Ciudadela');
+-
+-INSERT INTO Director (id_director, director_name)
+-VALUES (3, 'Marlon'), (4, 'Dandy'), (5, 'Emilio');
+-
+-INSERT INTO Movie (id_movie, title, genre)
+-VALUES (5, 'Titanic', 'Drama'), (6, 'Spider-man', 'Adventure'), (7, 'Hulk', 'Comedia');
+-
+-INSERT INTO Room (id_room, room_number)
+-VALUES (3, 3), (4, 4), (5, 5);
+-
+-INSERT INTO Projection (projection_ID, projection_Datetime, id_movie, id_room, id_cine, id_director)
+-VALUES (3, '2026-01-01 22:00:00', 3, 3, 3, 3), (4, '2025-02-02 12:00:00', 4, 4, 4, 4), (5, '2025-02-01 12:00:20', 5, 5, 5, 5);
+-
+--- JOIN's
+-	-- PART A
+-    
+-    -- 1
+-SELECT COUNT(*) AS 'Total_Projections' FROM Projection;
+-
+-	-- 2
+-SELECT m.title, COUNT(*) FROM Projection p
+-INNER JOIN Movie m ON p.id_movie = m.id_movie; 
+-
+-	-- 3
+-SELECT c.cine_name, COUNT(*) AS 'Total_Projections' FROM Projection p
+-INNER JOIN Cine c ON p.id_cine = c.id_cine;
+-
+-	-- PART B
+-
+-	-- 4
+-SELECT c.cine_name, COUNT(*) AS 'Total_Projections' 
+-FROM Projection p INNER JOIN Cine c
+-ON p.id_cine = c.id_cine
+-WHERE c.cine_name = 'Cine Centro';
+-
+-	-- 5
+-SELECT d.director_name, COUNT(*) AS 'Total_Projections', m.title
+-FROM Projection p INNER JOIN Director d
+-ON p.id_director = d.id_director
+-INNER JOIN Movie m ON p.id_movie = m.id_movie
+-GROUP BY d.director_name;
+-
+-	-- 6
+-SELECT m.genre, COUNT(*) AS 'Total_Projections'
+-FROM Projection p INNER JOIN Movie m
+-ON p.id_movie = m.id_movie
+-GROUP BY m.genre
+-ORDER BY 'Total_Projections' desc;
+-
+-	-- 7
+-SELECT m.title, COUNT(*) AS 'Total_Projections'
+-FROM Projection p INNER JOIN Movie m 
+-ON p.id_movie = m.id_movie
+-GROUP BY m.title
+-ORDER BY 'Total_Projections' desc
+-LIMIT 1;
+-
+-	-- 8
+-SELECT c.cine_name, COUNT(*) AS 'Total_Projections'
+-FROM Projection p INNER JOIN Cine c
+-ON p.id_cine = c.id_cine
+-GROUP BY c.cine_name
+-ORDER BY 'Total_Projections' DESC
+-LIMIT 3;
+-
+-	-- 9
+-SELECT m.title, MAX(p.projection_Datetime) AS 'Last_Screenings', MIN(p.projection_Datetime) AS 'First_Screenings'
+-FROM Movie m INNER JOIN Projection p ON m.id_movie = p.id_movie
+-GROUP BY 'Last_screenings', 'First_Screenings'
+-LIMIT 2;
+-
+--- 10
+-SELECT p.projection_ID, COUNT(p.projection_ID) AS 'number_Sreenings', c.cine_name
+-FROM Projection p INNER JOIN Cine c ON p.id_cine = c.id_cine
+-WHERE c.cine_name = 'Cine Centro'
+-GROUP BY 'number_Screenings'
+-LIMIT 1;
+-
+--- 11
+-SELECT 
+-    c.cine_name, 
+-    c.cine_address, 
+-    m.genre, 
+-    COUNT(p.projection_ID) AS total_projections, 
+-    MAX(p.projection_Datetime) AS Last_Screenings, 
+-    MIN(p.projection_Datetime) AS First_Screenings
+-FROM Projection p 
+-INNER JOIN Cine c ON p.id_cine = c.id_cine
+-INNER JOIN Movie m ON p.id_movie = m.id_movie
+-WHERE 
+-    (c.cine_address LIKE '%Cine%' OR c.cine_address LIKE '%Centro%')
+-    AND (m.genre LIKE '%Acc%' OR m.genre LIKE '%Dra%')
+-    AND m.genre NOT LIKE '%Saga%'
+-GROUP BY 
+-    c.cine_name, 
+-    c.cine_address, 
+-    m.genre
+-ORDER BY 
+-    total_projections DESC, 
+-    Last_Screenings DESC, 
+-    First_Screenings DESC;
+Index: ../BD/UD5/Activity4.sql
+===================================================================
+diff --git a/../BD/UD5/Activity4.sql b/../BD/UD5/Activity4.sql
+deleted file mode 100644
+--- a/../BD/UD5/Activity4.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,90 +0,0 @@
+-CREATE DATABASE cinema;
+-
+-USE cinema;
+-
+--- Create tables.
+-CREATE TABLE Projection (
+-	projection_ID VARCHAR(10) PRIMARY KEY,
+-    projection_Datetime DATETIME NOT NULL,
+-    id_movie INT NOT NULL,
+-    id_room INT NOT NULL,
+-    id_cine INT NOT NULL,
+-    id_director INT NOT NULL,
+-    
+-    CONSTRAINT fk_projection_movie
+-        FOREIGN KEY (id_movie)
+-        REFERENCES Movie (id_movie),
+-
+-    CONSTRAINT fk_projection_room
+-        FOREIGN KEY (id_room)
+-        REFERENCES Room (id_room),
+-        
+-	CONSTRAINT fk_projection_cine
+-		FOREIGN KEY (id_cine)
+-        REFERENCES Cine (id_cine),
+-        
+-	CONSTRAINT fk_projection_director
+-		FOREIGN KEY (id_director)
+-        REFERENCES Director (id_director)
+-);
+-
+-DROP TABLE Projection;
+-
+-CREATE TABLE Director (
+-	id_director INT PRIMARY KEY,
+-    director_name VARCHAR(20)
+-);
+-
+-ALTER TABLE Director
+-MODIFY id_director INT NOT NULL;
+-
+-CREATE TABLE Movie (
+-	id_movie INT AUTO_INCREMENT PRIMARY KEY,
+-    title VARCHAR(100),
+-    genre VARCHAR(20)
+-);
+-
+--- ADD COLUMN genre.
+-ALTER TABLE Movie 
+-ADD COLUMN genre VARCHAR(20);
+-
+-CREATE TABLE Room (
+-	id_room INT PRIMARY KEY,
+-    room_number INT
+-);
+-
+-CREATE TABLE Cine (
+-	id_cine INT PRIMARY KEY,
+-    cine_name VARCHAR(20),
+-    cine_address VARCHAR(50)
+-);
+-
+--- AUTO_INCREMENT
+-ALTER TABLE Projection
+-MODIFY COLUMN projection_id INT NOT NULL AUTO_INCREMENT;
+-
+--- INSERT'S
+-INSERT INTO Movie (id_movie, title)
+-VALUES (1, "Viernes 13"),(2, "Torrente");
+-
+-INSERT INTO Movie (genre)
+-VALUES ('Terror'), ('Comedia');
+-
+-INSERT INTO Room (id_room, room_number)
+-VALUES (1, 1), (2, 2);
+-
+-INSERT INTO Cine (id_cine, cine_name, cine_address)
+-VALUES (1, 'Cine Centro', 'C/ Centro de Mahón'), (2, 'Cine Grande', 'C/ Calle Grande');
+-
+-INSERT INTO Projection (projection_ID, projection_Datetime, id_movie, id_room, id_cine, id_director)
+-VALUES (1, '2024-01-01 19:00:00', 1, 1, 1, 1), (2, '2025-04-01 22:00:00', 2, 2, 2, 2);
+-
+-INSERT INTO Director (id_director, director_name)
+-VALUES (1, 'Santiago Segura'), (2, 'William Shakespeare');
+-
+--- DELETE's
+-DROP TABLE Projection;
+-
+-DROP TABLE Movie;
+-
+-DROP TABLE Room;
+Index: ../PRG2026/UD3/actividad3pt8/Ejercicio1.java
+===================================================================
+diff --git a/../PRG2026/UD3/actividad3pt8/Ejercicio1.java b/../PRG2026/UD3/actividad3pt8/Ejercicio1.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/actividad3pt8/Ejercicio1.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,31 +0,0 @@
+-package actividad3pt8;
+-
+-// Importamos la clase Scanner.
+-import java.util.Scanner;
+-
+-public class Ejercicio1 {
+-
+-    public static void main(String[] args) {
+-
+-        // Declaramos las variables
+-        Scanner sc = new Scanner(System.in);
+-        int numero;
+-        double resto;
+-        int esSiete;
+-
+-        // Pedimos el número al usuario.
+-        System.out.println("Introduzca un número, por favor: ");
+-        numero = sc.nextInt();
+-
+-        // Vemos si es multiplo o no.
+-        resto = numero % 7;
+-
+-        // Hacemos el operador ternario para saber si le tengo que sumar o no.
+-        esSiete = resto == 0 ? 0 : (int) (7 - resto);
+-
+-        // Mostramos lo que tenemos que sumar para que sea multiplo de 7.
+-        System.out.println("Se le suma: " + esSiete);
+-
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../BD/UD4/Activity_7.sql
+===================================================================
+diff --git a/../BD/UD4/Activity_7.sql b/../BD/UD4/Activity_7.sql
+deleted file mode 100644
+--- a/../BD/UD4/Activity_7.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,134 +0,0 @@
+-USE blogdb;
+-
+--- 1
+-SELECT 
+-    user_id,
+-    name,
+-    email,
+-    phone,
+-    role,
+-    IF(
+-        phone IS NOT NULL 
+-        AND phone <> '' 
+-        AND email LIKE '%@company.com',
+-        'COMPLETE',
+-        IF(
+-            (phone IS NOT NULL AND phone <> '')
+-            OR email LIKE '%@company.com',
+-            'PARTIAL',
+-            'INCOMPLETE'
+-        )
+-    ) AS contact_profile
+-FROM user
+-ORDER BY
+-    IF(
+-        phone IS NOT NULL 
+-        AND phone <> '' 
+-        AND email LIKE '%@company.com',
+-        1,
+-        IF(
+-            (phone IS NOT NULL AND phone <> '')
+-            OR email LIKE '%@company.com',
+-            2,
+-            3
+-        )
+-    ),
+-name ASC;
+-
+--- 2
+-SELECT
+-    name,
+-    UPPER(name) AS name_formatted,
+-    LENGTH(name) AS name_length,
+-    IF(LENGTH(name) <= 4, 'SHORT', 'LONG') AS name_type
+-FROM user
+-ORDER BY name_length DESC
+-LIMIT 10;
+-
+-
+--- 3
+-SELECT
+-    post_id,
+-    title,
+-    post_date,
+-    IF(post_date IS NULL, 'NO DATE', 'WITH DATE') AS date_status
+-FROM post
+-ORDER BY
+-    date_status ASC,
+-    post_id DESC;
+-
+-
+--- 4
+-SELECT
+-    name,
+-    email,
+-    register_date,
+-    DATEDIFF(CURDATE(), register_date) AS days_active,
+-    IF(
+-        DATEDIFF(CURDATE(), register_date) > 365,
+-        'OLD',
+-        'RECENT'
+-    ) AS user_label,
+-    CONCAT(
+-        'User ',
+-        name,
+-        ' registered ',
+-        DATEDIFF(CURDATE(), register_date),
+-        ' days ago'
+-    ) AS message
+-FROM user
+-WHERE
+-    register_date IS NOT NULL
+-    AND (
+-        email LIKE '%@company.com'
+-        OR email LIKE '%@example.com'
+-    )
+-ORDER BY
+-    days_active DESC,
+-    name ASC;
+-
+-
+--- 5
+-SELECT 
+-    comment_id,
+-    content,
+-    user_id,
+-    post_id,
+-    CASE
+-        WHEN content IS NULL OR content = '' THEN 'EMPTY'
+-        WHEN LOWER(content) LIKE '%error%' THEN 'HAS ERROR'
+-        ELSE 'OK'
+-    END AS alert
+-FROM comment
+-ORDER BY comment_id DESC
+-LIMIT 15;
+-
+-
+--- 6
+-SELECT 
+-    name,
+-    email,
+-    role,
+-    register_date,
+-    -- Campo calculado 'level'
+-    CASE
+-        WHEN role = 'admin' 
+-             OR (role = 'verified' AND phone IS NOT NULL AND phone <> '') THEN 'TOP'
+-        WHEN role = 'moderator' 
+-             OR email LIKE '%@example.com' THEN 'MEDIUM'
+-        ELSE 'LOW'
+-    END AS level,
+-    -- Campo calculado 'priority' numérico
+-    CASE
+-        WHEN role = 'admin' 
+-             OR (role = 'verified' AND phone IS NOT NULL AND phone <> '') THEN 1
+-        WHEN role = 'moderator' 
+-             OR email LIKE '%@example.com' THEN 2
+-        ELSE 3
+-    END AS priority
+-FROM user
+-
+-WHERE name LIKE '%a%'           -- Nombre contiene la letra 'a'
+-  AND role <> 'pending'         -- Rol no es 'pending'
+-ORDER BY priority ASC, register_date DESC;
+-
+Index: ../BD/UD4/Activity_2.sql
+===================================================================
+diff --git a/../BD/UD4/Activity_2.sql b/../BD/UD4/Activity_2.sql
+deleted file mode 100644
+--- a/../BD/UD4/Activity_2.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,119 +0,0 @@
+-CREATE DATABASE biblioteca_curso;
+-
+-USE biblioteca_curso;
+-
+-CREATE TABLE autor (
+-	autor_id VARCHAR(10) PRIMARY KEY,
+-    full_name VARCHAR(20) NOT NULL,
+-    nationality VARCHAR(20),
+-    birth DATE
+-);
+-
+-ALTER TABLE autor
+-ADD PRIMARY KEY (autor_id);
+-
+-CREATE TABLE libro (
+-	libro_id VARCHAR(10) PRIMARY KEY,
+-    title VARCHAR(10),
+-    literary_genre VARCHAR(10),
+-    year_of_publication DATE,
+-    number_pages INT,
+-    isbn VARCHAR(10),
+-	autor_id VARCHAR(10),
+-    FOREIGN KEY (autor_id)
+-    REFERENCES autor(autor_id)
+-);
+-
+-CREATE TABLE socio (
+-	email VARCHAR(10) NOT NULL,
+-    phone_number INT,
+-    registration_date DATETIME DEFAULT CURRENT_TIMESTAMP
+-);
+-
+--- 1 Añadir columna id_socio como PK auto-incremental
+-ALTER TABLE socio
+-ADD COLUMN id_socio INT AUTO_INCREMENT PRIMARY KEY FIRST;
+-
+--- 2 Añadir columna reading_partner
+-ALTER TABLE socio
+-ADD COLUMN reading_partner INT UNIQUE;
+-
+--- 3 Crear la FK autorreferencial
+-ALTER TABLE socio
+-ADD CONSTRAINT reading_partner_fk
+-FOREIGN KEY (reading_partner) REFERENCES socio(id_socio);
+-
+-CREATE TABLE prestamo (
+-	id_prestamo VARCHAR(10) PRIMARY KEY,
+-    id_socio INT NOT NULL,
+-    libro_id VARCHAR(10),
+-    FOREIGN KEY (id_socio) REFERENCES socio(id_socio),
+-    FOREIGN KEY (libro_id) REFERENCES libro(libro_id)
+-);
+-
+-ALTER TABLE socio
+-ADD COLUMN estado VARCHAR(10) DEFAULT "activo";
+-
+-ALTER TABLE socio
+-RENAME COLUMN phone_number TO telefono_contacto;
+-
+-ALTER TABLE libro
+-ADD COLUMN num_paginas INT;
+-
+-ALTER TABLE socio
+-MODIFY COLUMN registration_date SMALLINT;
+-
+-ALTER TABLE libro
+-ADD COLUMN title VARCHAR(10),
+-ADD COLUMN literary_genre VARCHAR(10),
+-ADD COLUMN year_of_publication DATE,
+-ADD COLUMN number_pages INT,
+-ADD COLUMN isbn VARCHAR(10);
+-
+-ALTER TABLE libro
+-ADD UNIQUE (libro_id);
+-
+-
+-ALTER TABLE libro
+-MODIFY COLUMN title VARCHAR(10) FIRST;  
+-
+-ALTER TABLE socio
+-ADD CONSTRAINT email_uq UNIQUE (email);
+-
+-ALTER TABLE autor
+-DROP COLUMN nationality;
+-
+-ALTER TABLE libro
+-MODIFY COLUMN title VARCHAR(10) NOT NULL;
+-
+-ALTER TABLE libro
+-DROP FOREIGN KEY libro_ibfk_1;
+-
+-ALTER TABLE libro
+-ADD CONSTRAINT libro_autor_fk
+-FOREIGN KEY (autor_id)
+-REFERENCES autor(autor_id);
+-
+-ALTER TABLE libro
+-ADD CONSTRAINT isbn_uq UNIQUE (isbn);
+-
+-ALTER TABLE socio
+-COMMENT = 'Table that stores the main information of  the library members.';
+-
+-SHOW TABLE STATUS LIKE 'socio';
+-
+-ALTER TABLE socio
+-MODIFY COLUMN telefono_contacto INT COMMENT 'Optional phone number of  the member.';
+-
+-SHOW FULL COLUMNS FROM socio;
+-
+-ALTER TABLE socio
+-COMMENT = 'Table of library members that  includes personal data, contact information, and special relationships such as  the reading partner.';
+-
+-SHOW TABLE STATUS LIKE 'socio';
+-
+-ALTER TABLE socio
+-MODIFY COLUMN telefono_contacto INT 
+-COMMENT 'Updated phone number of the member; optional field for notifications.';
+-
+-SHOW FULL COLUMNS FROM socio;
+Index: ../PRG2026/UD3/exercici3pt1pt4Corregido/PracticaTipusDades4.java
+===================================================================
+diff --git a/../PRG2026/UD3/exercici3pt1pt4Corregido/PracticaTipusDades4.java b/../PRG2026/UD3/exercici3pt1pt4Corregido/PracticaTipusDades4.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/exercici3pt1pt4Corregido/PracticaTipusDades4.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,24 +0,0 @@
+-package exercici3pt1pt4Corregido;
+-
+-public class PracticaTipusDades4 {
+-
+-    public static void main(String[] args) {
+-
+-        long valor = 120L;
+-        float altreValor = 45.8f;
+-        float valorFloat = 0f;
+-        float sumaValors = 0f;
+-
+-        // Conversió.
+-        valorFloat = valor;
+-
+-        // Sumen les variables float.
+-        sumaValors = valorFloat + altreValor;
+-
+-        // Mostrem el resultat per consola.
+-        System.out.println("valorFloat: " + valorFloat);
+-        System.out.println("sumaValors: " + sumaValors);
+-
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../BD/UD6/Activity_1.sql
+===================================================================
+diff --git a/../BD/UD6/Activity_1.sql b/../BD/UD6/Activity_1.sql
+deleted file mode 100644
+--- a/../BD/UD6/Activity_1.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,66 +0,0 @@
+-USE cinema;
+-
+--- PARTE
+-	-- 1
+-SELECT p.projection_ID, p.projection_Datetime, m.title 
+-FROM Projection p 
+-INNER JOIN Movie m ON m.id_movie = p.id_movie;
+-
+-	-- 2
+-SELECT m.title, p.projection_Datetime, r.room_number
+-FROM Movie m
+-INNER JOIN Projection p ON m.id_movie = p.id_movie
+-INNER JOIN Room r ON p.id_room = r.id_room;
+-
+-	-- 3
+-SELECT p.projection_ID, m.title, c.cine_name 
+-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
+-INNER JOIN Cine c ON p.id_cine = c.id_cine;
+-
+-	-- 4
+-SELECT m.title, m.genre, c.cine_name, r.room_number, p.projection_Datetime
+-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
+-INNER JOIN Cine c ON p.id_cine = c.id_cine
+-INNER JOIN Room r ON p.id_room = r.id_room;
+-
+-	-- 5
+-SELECT m.title, d.director_name, c.cine_name
+-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
+-INNER JOIN Director d ON p.id_director = d.id_director
+-INNER JOIN Cine c ON p.id_cine = c.id_cine
+-ORDER BY projection_Datetime;
+-
+-	-- 6
+-SELECT m.title, p.projection_Datetime, r.room_number
+-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
+-INNER JOIN Room r ON p.id_room = r.id_room
+-INNER JOIN Cine c ON p.id_cine = c.id_cine
+-WHERE cine_name = 'Cine Centro';
+-
+-	-- 7
+-SELECT p.projection_id, m.title, m.genre, d.id_director, c.cine_name, c.cine_address, r.room_number, p.projection_Datetime
+-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
+-INNER JOIN Director d ON p.id_director = d.id_director
+-INNER JOIN Cine c ON p.id_cine = c.id_cine
+-INNER JOIN Room r ON p.id_room = r.id_room;
+-
+-	-- 8
+-SELECT m.title, p.projection_Datetime, c.cine_name
+-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
+-INNER JOIN Cine c ON p.id_cine = c.id_cine
+-INNER JOIN Director d ON p.id_director = d.id_director
+-WHERE director_name = 'Christopher Nolan';
+-
+-	-- 9
+-SELECT p.projection_Datetime, c.cine_name, r.room_number
+-FROM Projection p INNER JOIN Cine c ON p.id_cine = c.id_cine
+-INNER JOIN Room r ON p.id_room = r.id_room
+-INNER JOIN Movie m ON p.id_movie = m.id_movie
+-WHERE m.title = 'Viernes 13';
+-
+-	-- 10
+-SELECT m.title, c.cine_name, r.room_number, p.projection_Datetime
+-FROM Projection p INNER JOIN Movie m ON p.id_movie = m.id_movie
+-INNER JOIN Cine c ON p.id_cine = c.id_cine
+-INNER JOIN Room r ON p.id_room = r.id_room
+-WHERE c.cine_name = 'Cine Plaza';
+Index: ../PRG2026/UD3/exercici3pt1pt3Corregido/PracticaTipusDades3.java
+===================================================================
+diff --git a/../PRG2026/UD3/exercici3pt1pt3Corregido/PracticaTipusDades3.java b/../PRG2026/UD3/exercici3pt1pt3Corregido/PracticaTipusDades3.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/exercici3pt1pt3Corregido/PracticaTipusDades3.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,25 +0,0 @@
+-package exercici3pt1pt3Corregido;
+-
+-public class PracticaTipusDades3 {
+-
+-    public static void main(String[] args) {
+-
+-        // Declarem variables.
+-        int valor = 75;
+-        double altreValor = 15.5d;
+-        double valorDoble = 0;
+-        double sumaValors = 0;
+-
+-        // Convertim de int a double.
+-        valorDoble = valor;
+-
+-        // Sumen els valors double.
+-        sumaValors = valorDoble + altreValor;
+-
+-        // Mostrem el resultat per consola.
+-        System.out.println("ValorDoble: " + valorDoble);
+-        System.out.println("sumaValors: " + sumaValors);
+-
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../PRG2026/UD3/exercici3pt2Corregido/Metropolis.java
+===================================================================
+diff --git a/../PRG2026/UD3/exercici3pt2Corregido/Metropolis.java b/../PRG2026/UD3/exercici3pt2Corregido/Metropolis.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/exercici3pt2Corregido/Metropolis.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,21 +0,0 @@
+-package exercici3pt2Corregido;
+-
+-public class Metropolis {
+-
+-    public static void main(String[] args) {
+-
+-        // Declaració de variables.
+-        boolean esCapital = true; // Cert si la ciutat és capital.
+-        int nombreDeCiutadans = 51000; // Nombre de ciutadans de la ciutat.
+-        double extensio = 190; // Extensió de la ciutat en km2.
+-        boolean esMetropolis; // Determina si una ciutat es metrópolis.
+-
+-        // Montem la expressió que determina si una ciutat es metrópolis.
+-        esMetropolis = (esCapital && (nombreDeCiutadans > 50000) && (extensio > 100)) ||
+-                (nombreDeCiutadans > 100000);
+-
+-        System.out.println(esMetropolis ? "Sí" : "No");
+-
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../PRG2026/UD3/exercici3pt2pt1Corregido/Metropolis.java
+===================================================================
+diff --git a/../PRG2026/UD3/exercici3pt2pt1Corregido/Metropolis.java b/../PRG2026/UD3/exercici3pt2pt1Corregido/Metropolis.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/exercici3pt2pt1Corregido/Metropolis.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,20 +0,0 @@
+-package exercici3pt2pt1Corregido;
+-
+-public class Metropolis {
+-
+-    public static void main(String[] args) {
+-
+-        // Declaració de variables.
+-        boolean esCapital = true; // Cert si la ciutat és capital.
+-        int nombreDeCiutadans = 51000; // Nombre de ciutadans de la ciutat.
+-        double impostPerCiutada = 190; // Impost mitjà mensual.
+-        boolean esMetropolis; // Determina si una ciutat es metrópolis.
+-
+-        // Montem la expressió que determina si una ciutat es metrópolis.
+-        esMetropolis = (esCapital && nombreDeCiutadans > 100000)
+-                || (nombreDeCiutadans > 200000 && (nombreDeCiutadans * impostPerCiutada * 12) > 720000000);
+-
+-        System.out.println(esMetropolis ? "Sí" : "No");
+-
+-    }
+-}
+\ No newline at end of file
+Index: ../BD/UD4/Activity_3.sql
+===================================================================
+diff --git a/../BD/UD4/Activity_3.sql b/../BD/UD4/Activity_3.sql
+deleted file mode 100644
+--- a/../BD/UD4/Activity_3.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,154 +0,0 @@
+-USE blogdb;
+-
+--- 1
+-INSERT INTO user (user_id, name, email, register_date)
+-VALUES ('1', 'user1', 'user1@gmail.com', NOW());
+-
+--- 2
+-INSERT INTO user (email)
+-VALUES ('user1@gmail.com');
+-
+--- 3
+-INSERT INTO user (user_id, name, email, register_date)
+-VALUES 
+-	(1, "user1", "user1@gmail.com", NOW()),
+-    (2, "user2", "user2@gmail.com", NOW()),
+-    (3, "user3", "user3@gmail.com", NOW()),
+-    (4, "user4", "user4@gmail.com", NOW()),
+-    (5, "user5", "user5@gmail.com", NOW());
+-    
+-SELECT * FROM user;
+-
+--- 4
+-INSERT INTO post (post_id, title, content, post_date)
+-VALUES 
+-	(1, "post1", "content long 1", NOW()),
+-    (2, "post2", "content long 2", NOW()),
+-	(3, "post3", "content long 3", NOW());
+-
+-SELECT * FROM post;
+-
+--- 5
+-INSERT INTO post (post_id, title, content, post_date)
+-VALUES ("POST1", "post1", "content long 1", NULL);
+-
+-SELECT * FROM post;
+-
+-
+--- 6
+-ALTER TABLE post
+-ADD COLUMN simple_date DATE;
+-
+-SELECT * FROM post;
+-
+-
+--- 7
+-INSERT INTO post (post_id, simple_date)
+-VALUES ("POST1.1", CURDATE());
+-
+-SELECT simple_date FROM post;
+-
+-
+--- 8
+-INSERT INTO user (name, email, register_date)
+-VALUES (CONCAT("David", " ", "Nagy"), ("dnagy@iesjoanramis.org"), NOW());
+-
+-SELECT * FROM user;
+-
+-ALTER TABLE user
+-ADD COLUMN phone INT;
+-
+-ALTER TABLE user
+-MODIFY COLUMN phone VARCHAR(50);
+-
+--- 9
+-INSERT INTO user (name, email, register_date, phone)
+-VALUES ("user6", "user6@gmail.com", NOW(), CONCAT("+34-", "63275632"));
+-
+-SELECT phone FROM user;
+-
+--- 10
+-INSERT INTO post (post_id, title, content, post_date, simple_date)
+-VALUES (1, 'Nuevo titulo', 'Nuevo contenido', NOW(), NOW());
+-
+-SELECT * FROM post;
+-
+-CREATE TABLE comment (
+-	post_ID VARCHAR(10), 
+-	user_ID VARCHAR(10), 
+-	comment_text VARCHAR(100), 
+-	comment_date VARCHAR(100)
+-);
+-
+-
+-INSERT INTO comment (post_ID, user_ID, comment_text, comment_date)
+-VALUES (LAST_INSERT_ID(), 1, 'Este es un comentario sobre el nuevo post.', NOW());
+-
+-SELECT * FROM comment;
+-
+--- 11
+-ALTER TABLE user
+-ADD COLUMN post_id VARCHAR(10);
+-
+-INSERT INTO user (user_id, post_id)
+-VALUES (LAST_INSERT_ID(), 1);
+-
+-SELECT * FROM user;
+-
+-ALTER TABLE user
+-ADD COLUMN role VARCHAR(100);
+-
+--- 12
+-INSERT INTO user (user_id, name, email, role)
+-VALUES (18, 'Pablo Sanchez', LOWER('PABLO.S@MAIL.COM'), UPPER('guest'));
+-
+-SELECT user_id, name, email, role FROM user;
+-
+--- 13
+-ALTER TABLE comment
+-MODIFY user_id VARCHAR(10),
+-MODIFY post_id VARCHAR(10);
+-
+--- 14
+-INSERT INTO comment (comment_text)
+-VALUES ('Cambio de comentario');
+-
+-SELECT comment_text FROM comment;
+-
+--- 15
+-ALTER TABLE comment
+-MODIFY comment_date DATETIME DEFAULT NOW();
+-
+-INSERT INTO comment (user_id, post_id, comment_text)
+-VALUES (1, 1, 'Ejercicio 15');
+-
+-SELECT * FROM comment;
+-
+--- 16
+-INSERT INTO comment (post_id, user_id, comment_text)
+-VALUES
+-(1, 1, 'Primer comentario de prueba'),
+-(1, 2, 'Segundo comentario de prueba'),
+-(2, 1, 'Tercer comentario de prueba');
+-
+-SELECT * FROM comment
+-ORDER BY post_id ASC;
+-
+--- 17
+-INSERT INTO comment (user_ID, comment_text, post_ID) VALUES (99, 'Comment test', 1);
+-
+-
+--- 19
+-INSERT INTO comment (comment_text, user_ID, post_ID) 
+-VALUES ('Testing invalid post', 1, 999);
+-
+--- 21
+-ALTER TABLE user
+-ADD CONSTRAINT email_uq UNIQUE (email);
+-
+--- 22
+-INSERT INTO user (name, email) 
+-VALUES ('Ana Ruiz', 'ana@example.com'); 
+-
+-INSERT INTO user (name, email) 
+-VALUES ('Pedro López', 'ana@example.com');
+\ No newline at end of file
+Index: ../BD/UD4.sql
+===================================================================
+diff --git a/../BD/UD4.sql b/../BD/UD4.sql
+deleted file mode 100644
+--- a/../BD/UD4.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,2 +0,0 @@
+-USE blogdb;
+-
+Index: ../BD/UD4/Activity_4.sql
+===================================================================
+diff --git a/../BD/UD4/Activity_4.sql b/../BD/UD4/Activity_4.sql
+deleted file mode 100644
+--- a/../BD/UD4/Activity_4.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,179 +0,0 @@
+-USE blogdb;
+-
+-SET SQL_SAFE_UPDATES = 0;
+-
+--- 1
+-UPDATE user
+-SET phone = 64736473
+-WHERE user_id = 2; 
+-
+--- 2
+-UPDATE user
+-SET role = 'external'
+-WHERE role <> 'admin';
+-
+--- 3
+-UPDATE post
+-SET title = 'CHANGED'
+-WHERE post_id > 1;
+-
+--- 4
+-UPDATE post
+-SET content = 'changed the content'
+-WHERE post_id < 3;
+-
+--- 5
+-UPDATE post
+-SET post_date = NOW()
+-WHERE post_id >= 2;
+-
+--- 6
+-UPDATE post
+-SET title = 'Archived'
+-WHERE post_id <= 4;
+-
+--- 7
+-UPDATE user
+-SET role = 'Verified'
+-WHERE role = 'external' 
+-AND register_date < '2025-01-01';
+-
+--- 8
+-UPDATE user
+-SET role = 'admin'
+-WHERE user_id = 1 
+-OR user_id = 3;
+-
+--- Añadir una clave primaria.
+-ALTER TABLE comment
+-ADD COLUMN comment_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
+-
+--- 9
+-UPDATE comment
+-SET comment_text = 'change the content'
+-WHERE comment_id > 1
+-AND user_id = 2;
+-
+--- 10
+-UPDATE user
+-SET role = 'pending'
+-WHERE role <> 'admin';
+-
+--- 11
+-UPDATE user
+-SET register_date = CURRENT_DATE()
+-WHERE phone IS NOT NULL;
+-
+--- 12
+-UPDATE user
+-SET phone = 999111222
+-WHERE phone IS NULL;
+-
+--- 13
+-UPDATE user
+-SET role = 'verified'
+-WHERE phone IS NOT NULL;
+-
+--- 14
+-UPDATE user
+-SET name = 'Unknown user'
+-WHERE name IS NULL;
+-
+--- 15
+-UPDATE post
+-SET post_date = NOW()
+-WHERE post_date IS NULL;
+-
+--- 16
+-UPDATE user
+-SET role = 'premium'
+-WHERE email IS NOT NULL
+-AND user_id > 2;
+-
+--- 17
+-UPDATE post
+-SET title = 'Change the title'
+-WHERE post_id < 3
+-OR post_id > 10;
+-
+--- 18
+-UPDATE comment
+-SET comment_text = 'change the content'
+-WHERE user_id = 1
+-OR user_id = 3
+-AND comment_id > 2;
+-
+--- 19
+-UPDATE user
+-SET email = 'change@email.com'
+-WHERE user_id = 4
+-AND phone IS NULL
+-AND register_date IS NULL;
+-
+--- 20
+-UPDATE user
+-SET role = 'archived'
+-WHERE user_id <= 3
+-AND phone IS NULL;
+-
+--- 21
+-UPDATE post
+-SET content = 'change content'
+-WHERE post_id >= 2 AND post_id <= 4;
+-
+--- 22
+-UPDATE user
+-SET phone = 000000000
+-WHERE role <> 'admin'
+-AND user_id <> 1;
+-
+--- 23
+-UPDATE user
+-SET email = LOWER(email);
+-
+--- 24
+-UPDATE user
+-SET role = UPPER(role)
+-WHERE user_id > 3;
+-
+--- 25
+-UPDATE user
+-SET phone = CONCAT('+34-', ' ')
+-WHERE phone IS NOT NULL;
+-
+--- 26
+-UPDATE post
+-SET simple_date = CURDATE()
+-WHERE post_id < 5;
+-
+--- 27
+-UPDATE user
+-SET name = TRIM(name);
+-
+--- 28
+-UPDATE post
+-SET content = REPLACE(content, '-', ' ');
+-
+--- 29
+-UPDATE user
+-SET name = LEFT(name, 5);
+-
+-ALTER TABLE user
+-ADD COLUMN surname VARCHAR(50);
+-
+--- 30
+-UPDATE user
+-SET surname = RIGHT(surname, 4);
+-
+--- 31
+-UPDATE user
+-SET role = 'LONG'
+-WHERE LENGTH(role) > 6;
+-
+--- 32
+-UPDATE user
+-SET role = IF (role = 'admin', 'vip', 'normal');
+-
+--- 33
+-UPDATE user
+-SET register_date = IF(role = 'admin', NOW(), register_date);
+Index: ../PRG2026/UD3/exercici3pt3Corregido/Conversio.java
+===================================================================
+diff --git a/../PRG2026/UD3/exercici3pt3Corregido/Conversio.java b/../PRG2026/UD3/exercici3pt3Corregido/Conversio.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/exercici3pt3Corregido/Conversio.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,33 +0,0 @@
+-package exercici3pt3Corregido;
+-
+-import java.util.Scanner;
+-
+-public class Conversio {
+-
+-    public static void main(String[] args) {
+-
+-        // Declaració de variables.
+-        double milles = 0;
+-        double quilometres = 0;
+-        final double FACTOR_MQ = 1.60934; // Factor conversió millas a quilometres.
+-
+-        // Instanciem un Scanner per interaccionar amb l'Usuari.
+-        Scanner sc = new Scanner(System.in);
+-
+-        // Demanem les milles a l'usuari.
+-        System.out.println("Introdueix la distància en milles: ");
+-        // Recollim la dada de l'usuari.
+-        milles = sc.nextDouble();
+-
+-        // Feim la conversió.
+-        quilometres = milles * FACTOR_MQ;
+-
+-        // Mostrem el resultat.
+-        System.out.println(milles + " milles equivalen a " + quilometres + " quilometres");
+-
+-        // Tanquem el Scanner:
+-        sc.close();
+-
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../BD/UD4/Activity_6.sql
+===================================================================
+diff --git a/../BD/UD4/Activity_6.sql b/../BD/UD4/Activity_6.sql
+deleted file mode 100644
+--- a/../BD/UD4/Activity_6.sql	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,146 +0,0 @@
+-USE blogdb;
+-
+--- 1
+-SELECT * FROM user;
+-
+--- 2
+-SELECT name, email, role FROM user;
+-
+--- 3
+-SELECT * FROM user
+-WHERE role = 'admin';
+-
+--- 4
+-SELECT * FROM user
+-WHERE phone IS NULL;
+-
+--- 5
+-SELECT * FROM post
+-WHERE LEFT(title, 1) = 'A';
+-
+--- 6
+-INSERT INTO comment (comment_text, comment_date, user_ID, post_ID)  
+-VALUES 
+-('Se ha producido un error al guardar los datos.', '2024-03-20', 1, 1), 
+-('ERROR grave en  el sistema de autenticación.', '2024-03-21', 2, 1), 
+-('No entiendo este ErRoR que aparece al  ejecutar la consulta.', '2024-03-22', 3, 2);
+-
+--- 6.b
+-SELECT * FROM comment
+-WHERE LOWER(comment_text) LIKE '%error';
+-
+--- 7
+-SELECT * FROM post
+-WHERE post_id IN(3 AND 7);
+-
+--- 8
+-SELECT * FROM user
+-WHERE RIGHT(email, 10) = '@gmail.com';
+-
+--- 9
+-SELECT * FROM user
+-WHERE role = ('admin' OR 'external' OR 'moderator');
+-
+--- 10
+-SELECT * FROM post
+-ORDER BY post_date DESC;
+-
+--- 11
+-SELECT * FROM user
+-ORDER BY register_date ASC
+-LIMIT 5;
+-
+--- 12
+-SELECT * FROM post
+-ORDER BY post_date DESC
+-LIMIT 3;
+-
+--- 13
+-SELECT role FROM user
+-ORDER BY role ASC;
+-
+-SELECT name FROM user
+-ORDER BY name ASC;
+-
+--- 14
+-SELECT name AS 'UserName' FROM user;
+-
+-SELECT register_date AS 'JoinDate' FROM user;
+-
+--- 15
+-SELECT * FROM user
+-WHERE name LIKE '%o';
+-
+--- 16
+-SELECT * FROM user
+-WHERE name LIKE '% ';
+-
+--- 17
+-SELECT * FROM user
+-ORDER BY register_date DESC
+-LIMIT 8;
+-
+--- 18
+-SELECT * FROM post
+-WHERE LENGTH(title) = 5;
+-
+--- 19
+-SELECT * FROM user
+-WHERE phone IS NOT NULL
+-ORDER BY phone DESC;
+-
+--- 20
+-SELECT name, email, role FROM user
+-WHERE (
+-	role <> 'admin'
+-    AND name LIKE '%a'
+-    AND phone IS NOT NULL OR RIGHT(email, 10) = '@gmail.com'
+-)
+-ORDER BY register_date DESC
+-LIMIT 6;
+-
+-ALTER TABLE post
+-ADD COLUMN user_id int; 
+-
+--- 21
+-SELECT post_date, user_id FROM post
+-WHERE (
+-	title LIKE '%SQL' OR title LIKE '%Docker'
+-)
+-AND 
+-(
+-	(post_date BETWEEN '2024-01-01' AND '2024-12-31')
+-    OR post_date IS NULL
+-)
+-ORDER BY post_date DESC
+-LIMIT 10;
+-
+--- 22
+-SELECT comment_id, comment_text, user_id FROM comment
+-WHERE (
+-	LEFT(comment_text, 5) = 'Error'
+-    OR comment_text LIKE '%falló'
+-)
+-AND
+-(
+-	user_id IN (1, 2, 3, 4)
+-)
+-AND 
+-(
+-	comment_text IS NOT NULL
+-)
+-ORDER BY comment_id ASC;
+-
+--- 23
+-SELECT name, email, role FROM user
+-WHERE (
+-	role IN('extern' AND 'guest')
+-    OR phone IS NULL
+-)
+-OR
+-(
+-	role = 'verified' 
+-    AND RIGHT(email, 10) = '@gmail.com'
+-)
+-ORDER BY role ASC, name ASC
+-LIMIT 15;
+Index: ../contra
+===================================================================
+diff --git a/../contra b/../contra
+deleted file mode 100644
+--- a/../contra	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,3 +0,0 @@
+-ASDFG54321
+-
+-Office: _3zW6@jp%4A.fnR
+Index: ../PRG2026/UD3/actividad3pt9/AdivinaNumeros.java
+===================================================================
+diff --git a/../PRG2026/UD3/actividad3pt9/AdivinaNumeros.java b/../PRG2026/UD3/actividad3pt9/AdivinaNumeros.java
+deleted file mode 100644
+--- a/../PRG2026/UD3/actividad3pt9/AdivinaNumeros.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,40 +0,0 @@
+-package actividad3pt9;
+-
+-// Importamos la clase Scanner.
+-import java.sql.SQLOutput;
+-import java.util.Scanner;
+-
+-public class AdivinaNumeros {
+-
+-    public static void main(String[] args) {
+-
+-        // Declaramos las variables
+-        int numAleatorio = (int) (1 + Math.random() * 100); // Genera un número aleatorio del 1 al 100.
+-        int adivinaNumeros = 0;
+-        String aAcertado;
+-
+-        // Instanciamos el Scanner.
+-        Scanner sc = new Scanner(System.in);
+-
+-        // Enseñamos información en la terminal para el usuario.
+-        System.out.println("--- BIENVENIDO AL JUEGO ---");
+-        System.out.println();
+-        System.out.println("El juego consiste en adivinar el número aleatorio, de tipo entero, tienes 4 intentos. " +
+-                "Buena suerte");
+-        System.out.println("Introduce el primer número: ");
+-        adivinaNumeros = sc.nextInt();
+-
+-        System.out.println("Introduce el segundo numero: ");
+-        adivinaNumeros = sc.nextInt();
+-
+-        System.out.println("Introduce el tercer numero: ");
+-        adivinaNumeros = sc.nextInt();
+-
+-        System.out.println("Introduce el quarto numero: ");
+-        adivinaNumeros = sc.nextInt();
+-
+-        aAcertado =
+-
+-    }
+-
+-}
+\ No newline at end of file
+Index: ../PRG2026/UD8/Apunts.java
+===================================================================
+diff --git a/../PRG2026/UD8/Apunts.java b/../PRG2026/UD8/Apunts.java
+deleted file mode 100644
+--- a/../PRG2026/UD8/Apunts.java	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
++++ /dev/null	(revision b2f4f867d335234a7b27c4c7b10353b209f0898c)
+@@ -1,67 +0,0 @@
+-// FLUXOS D'ENTRADA DE TEXT.
+-
+-        // Heredan de InputStreamReader
+-
+-        // java.io -> import java.io.*;
+-
+-        // FileReader
+-
+-        // Constructor -> FileReader(String nomArxiu)
+-
+-//        String ruta = "C:\\programes\\prova.txt";
+-//        FileReader fr = new FileReader("C:\\programes\\prova.txt");
+-
+-        // IOException
+-        // FileNotFoundException
+-
+-        // int read()
+-        // -1
+-        // void close()
+-
+-        // BufferedReader
+-        // BufferedReader br = new BufferedReader(new FileReader("Test.java"));
+-
+-        // String readLine()
+-
+-        // Ejercicio:
+-        
+-        // Cream un ficher NumerosReales.txt
+-        // Hem de escriure numeros reals = 5.5 -1.4 0.99 10.2 separats per espais en blanc
+-        // Cream un programa que accedeixi al fitxer i calculi la suma i la mitjana de al arritmetica
+-
+-        // ESCRIBIR FICHEROS.
+-
+-        // Writer
+-        // FileWriter
+-        // BufferedWriter
+-        // PrintWriter
+-
+-        // Metodos // FileWriter
+-
+-        // FileWriter fw = new FileWriter("prova.txt");
+-
+-        // void write(int c)
+-        // fw.write('A');
+-        // void write(String cadena);
+-
+-        // void close();
+-
+-        // BUFFEREDWRITER
+-
+-        // BufferedWriter
+-        // void write (String cadena)
+-        // void newLine()
+-
+-        // CADENAS
+-
+-        // char
+-        // Character
+-        // String
+-
+-        // \n
+-        // \t
+-
+-        // STRINGS
+-
+-        // El String es inmutable
+-        
+\ No newline at end of file
+Index: ../.idea/GitHub.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../.idea/GitHub.iml b/../.idea/GitHub.iml
+new file mode 100755
+--- /dev/null	(date 1772832409038)
++++ b/../.idea/GitHub.iml	(date 1772832409038)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="DBE_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1792523185882)
++++ b/.idea/.gitignore	(date 1792523185882)
+@@ -0,0 +1,10 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Ignored default folder with query files
++/queries/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
